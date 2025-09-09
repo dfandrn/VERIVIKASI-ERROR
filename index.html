@@ -258,38 +258,45 @@
 </button>
   </div>
 
-  <!-- Container gabungan -->
+  <!--  notif kecil -->
 <div class="notif-group">
-  
+
   <!-- Notifikasi kecil -->
-  <div class="notif-small">
-    <div class="left">📣 Beberapa orang 👉 🎁 <strong>DANA Deals</strong> oleh 👩‍👩‍👦</div>
-    <div class="right">🔥</div>
+  <div class="notif-small" id="notifSmall">
+    <div class="left">
+      <span class="notif-text-wrapper glitch" data-text="📣 Beberapa orang 👉 🎁 DANA Deals oleh 👩‍👩‍👦">
+        📣 Beberapa orang 👉 🎁 <strong>DANA Deals</strong> oleh 👩‍👩‍👦
+      </span>
+    </div>
+    <div class="right">
+      <span class="notif-text-wrapper glitch" data-text="🔥">🔥</span>
+    </div>
   </div>
 
-  <!-- Notifikasi besar -->
-  <div class="notif-card">
+  <!-- Notifikasi besar chat 1 -->
+  <div class="notif-card" id="notifCard1">
     <div class="notif-left">
       <div class="notif-icon">
-        <img src="https://placehold.co/36x36/00AEEF/FFFFFF?text=%F0%9F%91%A5" alt="Teman">
+        <img src="https://placehold.co/36x36/00AEEF/FFFFFF?text=%F0%9F%91%A5" alt="Teman" id="notifCard1Icon">
       </div>
-      <div class="notif-text">
+      <div class="notif-text" id="notifCard1Text">
         <strong>Temanmu</strong> 👉 🎁 dari 👥
       </div>
     </div>
-    <div class="notif-time">7d</div>
+    <div class="notif-time" id="notifCard1Time">7d</div>
   </div>
 
-  <div class="notif-card">
+  <!-- Notifikasi besar chat 2 (lebih kecil dan rapat) -->
+  <div class="notif-card" id="notifCard2">
     <div class="notif-left">
       <div class="notif-icon">
-        <img src="https://placehold.co/36x36/0044CC/FFFFFF?text=%F0%9F%9A%9A" alt="DANA">
+        <img src="https://placehold.co/36x36/0044CC/FFFFFF?text=%F0%9F%9A%9A" alt="DANA" id="notifCard2Icon">
       </div>
-      <div class="notif-text">
+      <div class="notif-text" id="notifCard2Text">
         <strong>DANA</strong> Bayar STNK praktis via e-Samsat di DANA
       </div>
     </div>
-    <div class="notif-time">9m</div>
+    <div class="notif-time" id="notifCard2Time">9m</div>
   </div>
 
 </div>
