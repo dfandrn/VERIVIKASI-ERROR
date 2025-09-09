@@ -1,3 +1,201 @@
+/*style riwayat saldo Container ringkasan bulan ini */
+#txnSummary {
+  background: #f0f9ff;
+  border-radius: 12px;
+  margin: 12px 16px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  font-weight: 600;
+  font-size: 14px;
+  color: #1f2937; /* gray-800 */
+}
+
+/* Header tanggal grup transaksi */
+.date-header {
+  background: #fff;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  color: #374151; /* gray-700 */
+}
+
+/* Item transaksi */
+.txn-item {
+  background: #fff;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.txn-item:hover {
+  background-color: #f9fafb;
+}
+
+/* Icon bulat */
+.txn-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #e0e7ff;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+/* Teks kiri */
+.txn-item .flex-grow {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.txn-item .flex-grow > div:first-child {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827; /* gray-900 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.txn-item .flex-grow > div:nth-child(2) {
+  font-size: 11px;
+  color: #6b7280; /* gray-500 */
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.txn-item .flex-grow > div:nth-child(3) {
+  font-size: 11px;
+  color: #4b5563; /* gray-600 */
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Teks kanan */
+.text-right {
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.text-right > div:first-child {
+  font-weight: 700;
+  font-size: 14px;
+  color: #16a34a; /* green-600 */
+  white-space: nowrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 10px;
+  user-select: none;
+  margin-top: 4px;
+  text-transform: capitalize;
+}
+
+.bg-green-100 {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.bg-red-100 {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.bg-yellow-100 {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+/* Modal overlay */
+.fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.bg-black\/60 {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Modal container */
+.rounded-3xl {
+  border-radius: 24px;
+}
+
+.shadow-xl {
+  box-shadow: 0 10px 15px rgba(0,0,0,0.25);
+}
+
+.modal-content {
+  max-width: 400px;
+  width: 90%;
+  background: white;
+  padding: 24px;
+  position: relative;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #374151; /* gray-700 */
+}
+
+.modal-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #111827; /* gray-900 */
+}
+
+.modal-content .font-semibold {
+  font-weight: 600;
+}
+
+.modal-content .font-mono {
+  font-family: monospace;
+  background-color: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  color: #9ca3af; /* gray-400 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  color: #374151; /* gray-700 */
+}
+
  /* Default (tetap putih di light) */
 .saldo-card { transition: background .25s, color .25s, border-color .25s; }
 
@@ -271,75 +469,231 @@ body.dark-mode .theme-toggle-btn:hover {
 }
 
 /* === NOTIFIKASI === */
+  /* Notifikasi kecil */
+  .notif-small {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: default;
+    perspective: 800px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: #007ACC; /* warna biru konsisten */
+    color: white;
+    font-weight: 600;
+    user-select: none;
+    box-shadow: 0 4px 8px rgba(0, 122, 204, 0.3);
+    transition: background-color 0.8s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2px; /* rapat ke bawah */
+  }
 
-/* Container notif biar nyatu */
-.notif-group {
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  margin-bottom: 16px;
-}
+  .notif-text-wrapper {
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    color: white;
+  }
 
-/* Notif kecil */
-.notif-small {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #fff6ec;
-  padding: 8px 12px;
-  font-size: 13px;
-  border-bottom: 1px solid #f0f0f0;
-}
+  /* Efek glitch untuk notif kecil */
+  .glitch {
+    position: relative;
+    color: white;
+    animation: glitchAnim 3s infinite;
+  }
 
-/* Notif besar */
-.notif-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  background: #fff;
-  font-size: 14px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.notif-card:last-child {
-  border-bottom: none;
-}
+  .glitch::before,
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
 
-/* Ikon notif */
-.notif-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.notif-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+  .glitch::before {
+    left: 1px;
+    text-shadow: -1px 0 rgba(255, 0, 0, 0.3);
+    animation: glitchAnimBefore 3s infinite;
+  }
 
-/* Teks notif */
-.notif-text {
-  line-height: 1.4;
-  flex: 1;
-  margin-left: 10px;
-  color: #333;
-}
-.notif-text strong {
-  font-weight: 600;
-  color: #111;
-}
+  .glitch::after {
+    left: -1px;
+    text-shadow: -1px 0 rgba(0, 255, 255, 0.3);
+    animation: glitchAnimAfter 3s infinite;
+  }
 
-/* Waktu notif */
-.notif-time {
-  color: #888;
-  font-size: 12px;
-  white-space: nowrap;
-  margin-left: 10px;
-}
+  @keyframes glitchAnim {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-1px, 1px);
+    }
+    40% {
+      transform: translate(-1px, -1px);
+    }
+    60% {
+      transform: translate(1px, 1px);
+    }
+    80% {
+      transform: translate(1px, -1px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
 
+  @keyframes glitchAnimBefore {
+    0%, 100% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+    10%, 30% {
+      clip: rect(0, 9999px, 100%, 0);
+      transform: translate(-1px, -1px);
+    }
+    20%, 40% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+  }
+
+  @keyframes glitchAnimAfter {
+    0%, 100% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+    15%, 35% {
+      clip: rect(0, 9999px, 100%, 0);
+      transform: translate(1px, 1px);
+    }
+    25%, 45% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+  }
+
+  /* Notif card style (chat) */
+  .notif-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    user-select: none;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .notif-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .notif-icon {
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .notif-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .notif-text {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .notif-time {
+    font-size: 0.8em;
+    opacity: 0.7;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Chat 1 kecil dan rapat ke notif kecil */
+  #notifCard1 {
+    font-size: 0.85em;
+    height: 44px;
+    margin-top: 2px;    /* rapat ke notif kecil */
+    margin-bottom: 2px;
+    padding: 6px 10px;
+  }
+
+  #notifCard1 .notif-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  #notifCard1 .notif-time {
+    font-size: 0.75em;
+    margin-left: 8px;
+  }
+
+  /* Chat 2 sudah kecil dan rapat */
+  #notifCard2 {
+    font-size: 0.75em;
+    height: 40px;
+    margin-bottom: 0;
+    padding: 6px 10px;
+  }
+
+  #notifCard2 .notif-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+  }
+
+  #notifCard2 .notif-time {
+    font-size: 0.7em;
+    margin-left: 6px;
+  }
+
+  /* Animasi slide up keluar */
+  .slide-up-out {
+    animation: slideUpOut 0.5s forwards;
+  }
+
+  /* Animasi slide up masuk */
+  .slide-up-in {
+    animation: slideUpIn 0.5s forwards;
+  }
+
+  @keyframes slideUpOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes slideUpIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    
 /* === DARK MODE FIX NOTIF === */
 body.dark-mode .notif-group {
   background: #1e1e1e;
@@ -990,4 +1344,4 @@ body.dark-mode .bottom-nav button.active {
   font-size: 11px;
   color: #666;
   margin: 2px 0 0 0;
-  }
+ }
