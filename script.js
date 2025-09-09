@@ -1046,5 +1046,158 @@ CarGame.stop();
 });
 
 
+  // Data notifikasi kecil
+  const notifSmallData = [
+    {
+      left: '📣 Beberapa orang 👉 🎁 <strong>DANA Deals</strong> oleh 👩‍👩‍👦',
+      right: '🔥'
+    },
+    {
+      left: '📣 Temanmu baru saja mendapatkan <strong>Voucher Diskon</strong>!',
+      right: '🎉'
+    },
+    {
+      left: '📣 Jangan lewatkan <strong>Promo Cashback</strong> hari ini!',
+      right: '💰'
+    },
+    {
+      left: '📣 Ada <strong>Event Spesial</strong> di aplikasi DANA!',
+      right: '✨'
+    }
+  ];
+
+  // Data chat untuk notif card 1 dan 2
+  const notifCard1Data = [
+    {
+      icon: 'https://placehold.co/36x36/00AEEF/FFFFFF?text=%F0%9F%91%A5',
+      text: '<strong>Temanmu</strong> 👉 🎁 dari 👥',
+      time: '7d'
+    },
+    {
+      icon: 'https://placehold.co/36x36/FF4500/FFFFFF?text=%F0%9F%8E%89',
+      text: '<strong>Event</strong> Spesial: Menangkan hadiah menarik!',
+      time: '1h'
+    },
+    {
+      icon: 'https://placehold.co/36x36/008000/FFFFFF?text=%F0%9F%92%B0',
+      text: '<strong>Promo</strong> Cashback hingga 50%!',
+      time: '30m'
+    }
+  ];
+
+  const notifCard2Data = [
+    {
+      icon: 'https://placehold.co/36x36/0044CC/FFFFFF?text=%F0%9F%9A%9A',
+      text: '<strong>DANA</strong> Bayar STNK praktis via e-Samsat di DANA',
+      time: '9m'
+    },
+    {
+      icon: 'https://placehold.co/36x36/800080/FFFFFF?text=%F0%9F%8E%81',
+      text: '<strong>Voucher</strong> Diskon 20% untuk pengguna baru!',
+      time: '2h'
+    },
+    {
+      icon: 'https://placehold.co/36x36/FFA500/FFFFFF?text=%F0%9F%8E%81',
+      text: '<strong>Event</strong> Terbatas: Klaim hadiahmu sekarang!',
+      time: '45m'
+    }
+  ];
+
+  let notifSmallIndex = 0;
+  let notifCard1Index = 0;
+  let notifCard2Index = 0;
+
+  // Referensi elemen notif kecil
+  const notifSmall = document.getElementById('notifSmall');
+  const leftWrapper = notifSmall.querySelector('.left .notif-text-wrapper');
+  const rightWrapper = notifSmall.querySelector('.right .notif-text-wrapper');
+
+  // Referensi notif card 1
+  const notifCard1 = document.getElementById('notifCard1');
+  const notifCard1Icon = document.getElementById('notifCard1Icon');
+  const notifCard1Text = document.getElementById('notifCard1Text');
+  const notifCard1Time = document.getElementById('notifCard1Time');
+
+  // Referensi notif card 2
+  const notifCard2 = document.getElementById('notifCard2');
+  const notifCard2Icon = document.getElementById('notifCard2Icon');
+  const notifCard2Text = document.getElementById('notifCard2Text');
+  const notifCard2Time = document.getElementById('notifCard2Time');
+
+  // Fungsi animasi slide up keluar
+  function slideUpOut(element) {
+    return new Promise(resolve => {
+      element.classList.add('slide-up-out');
+      element.addEventListener('animationend', function handler() {
+        element.removeEventListener('animationend', handler);
+        element.classList.remove('slide-up-out');
+        resolve();
+      });
+    });
+  }
+
+  // Fungsi animasi slide up masuk
+  function slideUpIn(element) {
+    return new Promise(resolve => {
+      element.classList.add('slide-up-in');
+      element.addEventListener('animationend', function handler() {
+        element.removeEventListener('animationend', handler);
+        element.classList.remove('slide-up-in');
+        resolve();
+      });
+    });
+  }
+
+  // Fungsi update notif kecil
+  async function updateNotifSmall() {
+    notifSmallIndex = (notifSmallIndex + 1) % notifSmallData.length;
+
+    await Promise.all([
+      slideUpOut(leftWrapper),
+      slideUpOut(rightWrapper)
+    ]);
+
+    leftWrapper.innerHTML = notifSmallData[notifSmallIndex].left;
+    leftWrapper.setAttribute('data-text', leftWrapper.textContent);
+    rightWrapper.innerHTML = notifSmallData[notifSmallIndex].right;
+    rightWrapper.setAttribute('data-text', rightWrapper.textContent);
+
+    await Promise.all([
+      slideUpIn(leftWrapper),
+      slideUpIn(rightWrapper)
+    ]);
+  }
+
+  // Fungsi update notif card 1
+  async function updateNotifCard1() {
+    notifCard1Index = (notifCard1Index + 1) % notifCard1Data.length;
+
+    await slideUpOut(notifCard1);
+    notifCard1Icon.src = notifCard1Data[notifCard1Index].icon;
+    notifCard1Text.innerHTML = notifCard1Data[notifCard1Index].text;
+    notifCard1Time.textContent = notifCard1Data[notifCard1Index].time;
+    await slideUpIn(notifCard1);
+  }
+
+  // Fungsi update notif card 2
+  async function updateNotifCard2() {
+    notifCard2Index = (notifCard2Index + 1) % notifCard2Data.length;
+
+    await slideUpOut(notifCard2);
+    notifCard2Icon.src = notifCard2Data[notifCard2Index].icon;
+    notifCard2Text.innerHTML = notifCard2Data[notifCard2Index].text;
+    notifCard2Time.textContent = notifCard2Data[notifCard2Index].time;
+    await slideUpIn(notifCard2);
+  }
+
+  // Set data-text awal supaya glitch animasi jalan
+  leftWrapper.setAttribute('data-text', leftWrapper.textContent);
+  rightWrapper.setAttribute('data-text', rightWrapper.textContent);
+
+  // Interval update
+  setInterval(updateNotifSmall, 5000);
+  setInterval(updateNotifCard1, 7000);
+  setInterval(updateNotifCard2, 9000);
+
     /* ========= Expose for inline buttons from HTML ========= */
     window.logout = logout;
