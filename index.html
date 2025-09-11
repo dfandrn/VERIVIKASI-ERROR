@@ -449,10 +449,25 @@
 <div class="theme-toggle-container mt-4">
   <p class="theme-title">Kamu tim mana?</p>
   <p class="theme-sub">Sisi gelap atau terang, ayo pilih di sini! 🌟</p>
-  <button class="theme-toggle-btn light" id="toggleThemeBtn">☀️ Light Mode</button>
+  
+  <label class="switch">
+    <input type="checkbox" id="toggleThemeBtn" />
+    <span class="slider round">
+      <span class="icon sun">☀️</span>
+      <span class="icon moon">🌙</span>
+    </span>
+  </label>
+</div>
+  
+<!-- Footer -->
+  <footer class="p-4 border-t bg-white flex flex-col gap-3">
+    <button id="keluarBtn" class="w-full py-3 rounded-xl bg-red-600 text-white font-bold shadow hover:bg-red-700">Keluar</button>
+    <button id="batalBtn" class="w-full py-3 rounded-xl bg-gray-200 text-gray-800 font-semibold">Batal</button>
+  </footer>
 </div>
 </section>
 
+    
 <!-- Section lain jangan nyambung -->
 <section id="activitySection" class="p-5 hidden">
   <h2 class="text-lg font-semibold mb-3">Aktivitas</h2>
