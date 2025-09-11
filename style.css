@@ -1345,3 +1345,250 @@ body.dark-mode .bottom-nav button.active {
   color: #666;
   margin: 2px 0 0 0;
  }
+
+/*menu 5 aktivitas*/
+    background-color: #f2f2f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px 0;
+    color: #1c1c1e;
+  }
+  
+  .container {
+  width: 100%;        /* biar full lebar */
+  max-width: 100%;    /* hapus batasan 420px */
+  margin: 0;          /* buang auto center */
+  border-radius: 0;   /* biar rata pojok layar */
+  padding: 0;         /* biar nggak ada jarak */
+  box-shadow: none;   /* hilangin bayangan putih */
+  background: none;   /* biar warna sesuai section */
+}
+
+  /* Protection Section */
+  .protection-section {
+    background: #f0f6ff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    border: 1px solid #007AFF;
+  }
+  .protection-section .header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    color: #007AFF;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .icon-shield, .icon-lock {
+    flex-shrink: 0;
+  }
+  .icon-arrow {
+    margin-left: auto;
+  }
+  .input-search {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 12px;
+    border: 1.5px solid #c5cee0;
+    margin-bottom: 12px;
+    outline-offset: 2px;
+  }
+  .input-search:focus {
+    border-color: #007AFF;
+    box-shadow: 0 0 10px #c8e0ff;
+  }
+  .protection-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .protection-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #007AFF;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .btn-secure {
+    display: flex;
+    align-items: center;
+    border: none;
+    background: #007AFF;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    gap: 6px;
+  }
+  .btn-secure span {
+    background: white;
+    color: #007AFF;
+    border-radius: 6px;
+    padding: 0 8px;
+    font-weight: 700;
+  }
+
+  /* Deals Section */
+  .deals-section {
+    margin-bottom: 20px;
+  }
+  .deals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .deals-header h3 {
+    font-weight: 700;
+    margin: 0;
+  }
+  .btn-explore {
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 12px;
+    border-radius: 15px;
+    background: none;
+    border: 1px solid #007AFF;
+    color: #007AFF;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-explore:hover {
+    background-color: #007AFF;
+    color: white;
+  }
+  .voucher {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+  }
+  .voucher-blue {
+    background-color: #007AFF;
+    color: white;
+  }
+  .voucher-yellow {
+    background-color: #FFD600;
+    color: #242424;
+  }
+  .voucher-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .voucher-label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .voucher-value {
+    font-size: 18px;
+    font-weight: 800;
+  }
+  .voucher-value b {
+    font-weight: 800;
+  }
+  .voucher-desc {
+    font-size: 11px;
+    opacity: 0.9;
+  }
+  .voucher-price {
+    font-weight: 700;
+    font-size: 16px;
+    background: white;
+    border-radius: 10px;
+    color: #007AFF;
+    padding: 8px 12px;
+    min-width: 80px;
+    text-align: center;
+  }
+  .discount-badge {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: #0a8400;
+    font-weight: 600;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 0 0 6px 6px;
+    color: white;
+    user-select: none;
+  }
+  .voucher-yellow .discount-badge {
+    background: #0a8400;
+  }
+
+  /* News Section */
+  .news-section {
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .news-header h3 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 17px;
+    color: #171717;
+  }
+  .btn-see-all {
+    border: none;
+    font-size: 13px;
+    font-weight: 700;
+    color: #007AFF;
+    background: none;
+    cursor: pointer;
+  }
+  .news-subtext {
+    margin: 0 0 12px;
+    font-size: 12px;
+    color: #7a7a7a;
+  }
+  .news-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .news-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .news-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .news-list strong {
+    font-weight: 700;
+    font-size: 14px;
+    color: #171717;
+  }
+  .news-list small {
+    font-size: 11px;
+    color: #7a7a7a;
+  }
+
+  /* === Footer sampe sini=== */
+    .footer-text {
+      text-align: center;
+      font-size: 12px;
+      color: gray;
+      padding: 16px;
+      width: 100%;
+    }
