@@ -1,4 +1,4 @@
-/*style riwayat saldo Container ringkasan bulan ini */
+  /*style riwayat saldo Container ringkasan bulan ini */
 #txnSummary {
   background: #f0f9ff;
   border-radius: 12px;
@@ -850,234 +850,148 @@ body.dark-mode .notif-time {
   padding-top: 60px;
 }
 
-/* Tombol close */
-.close-btn {
-  position: absolute;
-  top: 20px; right: 20px;
-  background: rgba(13,71,161,0.1); /* biru tipis */
-  border: none;
-  color: #0d47a1;
-  font-size: 20px;
-  padding: 6px 12px;
-  border-radius: 8px;
+
+/* Header biru cerah di atas */
+.overlay-header {
+  background: #2a7de1;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  justify-content: space-between;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+
+/* Icon back dan search dalam header */
+.header-icon {
+  font-size: 22px;
   cursor: pointer;
+  user-select: none;
 }
 
-/* Section → putih dengan border biru */
+/* Section card seperti putih dan ada border-radius + shadow */
 .section {
-  background: #ffffff;
-  border: 1px solid #bbdefb; /* biru muda */
+  background: #fff;
   border-radius: 16px;
-  padding: 16px;
-  margin: 16px;
-  color: #0d47a1; /* teks biru */
-  box-shadow: 0 2px 6px rgba(30,136,229,0.15);
+  margin: 14px 12px 0;
+  padding: 16px 12px 20px;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.12);
 }
 
-/* Header */
+/* Section header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1px;
+}
 .section-header h2 {
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 10px;
+  color: #111;
   margin: 0;
-  color: #1565c0;
 }
 
+/* Button lihat semua - kecil dan sederhana */
 .lihat-semua {
-  background: #1e88e5;
+  background: none;
   border: none;
-  padding: 6px 14px;
-  border-radius: 20px;
+  color: #2a7de1;
+  font-weight: 600;
   font-size: 12px;
   cursor: pointer;
-  color: white;
 }
 
-/* Grid menu */
+/* Grid untuk menu */
 .menu-grid {
   display: grid;
-  grid-template-columns:repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
 }
 
-/* Kotak menu putih dengan border biru */
+/* Menu item */
 .menu-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
   font-size: 11px;
-  color: #1565c0;
-}
-
-.menu-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 12px;
-  background: #ffffff; /* putih */
-  border: 1px solid #90caf9; /* garis biru */
-  box-shadow: 0 2px 4px rgba(30,136,229,0.2); /* efek bayangan biru */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
-}
-
-/* biar icon/gambar tampil normal */
-.menu-icon img {
-  width: 28px;
-  height: 28px;
-}
-
-.header-saldo {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.menu-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #42a5f5, #ffffff, #90caf9);
-  background-size: 300% 300%;
-  animation: gradientMove 6s ease infinite, glow 3s ease-in-out infinite alternate;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 4px;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(66, 165, 245, 0.5);
-  transition: transform 0.3s ease;
-}
-
-/* Efek hover biar lebih interaktif */
-.menu-icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 20px rgba(30, 136, 229, 0.8);
-}
-
-/* Gradient bergerak */
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Glowing pulse */
-@keyframes glow {
-  0% {
-    box-shadow: 0 0 8px rgba(30, 136, 229, 0.4),
-                0 0 16px rgba(30, 136, 229, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 16px rgba(30, 136, 229, 0.8),
-                0 0 32px rgba(30, 136, 229, 0.5);
-  }
-}
-
-.menu-icon img {
-  width: 28px;
-  height: 28px;
-  position: relative;
-  z-index: 2; /* biar gambar/icon tetap di atas animasi */
-}
-
-
-/* Header top row */
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-}
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #0066ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #fff;
-}
-.notif-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: white;
-}
-
-/* Kartu saldo */
-.saldo-card {
-  background: #fff;
-  color: #333;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.saldo-info .label {
-  font-size: 12px;
-  color: #666;
-}
-.saldo-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.saldo-row .amount {
-  font-size: 22px;
-  font-weight: 700;
   color: #222;
+  text-align: center;
+  cursor: pointer;
 }
-.eye-btn {
-  padding: 6px;
-  background: #f5f5f5;
+
+/* Icon bulat */
+.menu-icon {
+  width: 52px;
+  height: 52px;
+  background: #fff;
   border-radius: 50%;
-  border: 1px solid #ddd;
-  cursor: pointer;
-}
-
-/* Tombol aksi */
-.saldo-actions {
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.12);
   display: flex;
-  justify-content: space-between;
-  margin: 14px 0;
-  gap: 10px;
-}
-.action-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 8px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-}
-.action-btn.topup {
-  background: #e6f2ff;
-  color: #0044cc;
-}
-.action-btn.tarik {
-  background: #ffecec;
-  color: #cc0000;
+  align-items: center;
+  margin-bottom: 6px;
+  overflow: visible;
 }
 
-/* Note bawah saldo */
-.note {
-  font-size: 11px;
-  color: #666;
+/* Icon gambar */
+.menu-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Banner promo (Terakhir Dibuka) */
+.promo-banner {
+  background: #2a7de1;
+  border-radius: 12px;
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
+  margin-bottom: 12px;
 }
+
+/* Promo text */
+.promo-content {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Button coba */
+.coba-btn {
+  border: 1.5px solid #2a7de1;
+  background: transparent;
+  color: #2a7de1;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* Container kecil ikon sebelah kanan (filter pilihan) */
+.filter-icons {
+  background: #f2f4f8;
+  border-radius: 18px;
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  align-items: center;
+  font-size: 11px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+/* Preferensi warna ikon dan teks menggunakan warna asli dan terang */
+
 
 
 /* === DARK MODE === */
@@ -1236,6 +1150,7 @@ body.dark-mode .notif-time {
     #startupVerify .btn-success{ background:#22c55e; color:#fff;}
     #startupVerify .hidden{ display:none;}
 
+/*button biar nempel*/
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -1344,7 +1259,9 @@ body.dark-mode .bottom-nav button.active {
   font-size: 11px;
   color: #666;
   margin: 2px 0 0 0;
- }
+}
+
+
 
 /*menu 5 aktivitas*/
     background-color: #f2f2f2;
@@ -1592,3 +1509,139 @@ body.dark-mode .bottom-nav button.active {
       padding: 16px;
       width: 100%;
     }
+  
+  /*tombol style hitam/putih*/
+  .theme-toggle-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 320px;
+  margin: 2rem auto;
+  text-align: center;
+  color: #222;
+  user-select: none;
+}
+
+.theme-title {
+  font-size: 1.0rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.theme-sub {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 38px;
+  perspective: 1000px; /* for subtle 3D effect */
+  cursor: pointer;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider background */
+.slider {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #e0e0e0, #bababa);
+  border-radius: 38px;
+  box-shadow:
+    inset 2px 2px 5px #ffffff,
+    inset -5px -5px 10px #a3a3a3,
+    4px 4px 8px rgba(0,0,0,0.15);
+  transition: background 0.4s ease;
+  overflow: visible;
+}
+
+/* The knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(145deg, #fefefe, #d1d1d1);
+  border-radius: 50%;
+  box-shadow:
+    0 4px 6px rgba(0,0,0,0.2),
+    inset 1px 1px 2px #fff,
+    inset -1px -1px 2px #bbb;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+  will-change: transform;
+  z-index: 2;
+}
+
+/* Icon container inside slider */
+.slider .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s ease;
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.15));
+}
+
+.slider .sun {
+  left: 10px;
+  color: #f39c12;
+  text-shadow: 0 0 3px #f39c12aa;
+}
+
+.slider .moon {
+  right: 10px;
+  color: #34495e;
+  text-shadow: 0 0 3px #34495eaa;
+  opacity: 0.5;
+}
+
+/* Checked state */
+.switch input:checked + .slider {
+  background: linear-gradient(145deg, #4a4a4a, #2c2c2c);
+  box-shadow:
+    inset 2px 2px 5px #1a1a1a,
+    inset -5px -5px 10px #5a5a5a,
+    4px 4px 8px rgba(0,0,0,0.6);
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(32px);
+  background: linear-gradient(145deg, #3a3a3a, #1f1f1f);
+  box-shadow:
+    0 6px 8px rgba(0,0,0,0.5),
+    inset 1px 1px 2px #555,
+    inset -1px -1px 2px #222;
+}
+
+/* Icon visibility toggle */
+.switch input:checked + .slider .sun {
+  opacity: 0.3;
+}
+
+.switch input:checked + .slider .moon {
+  opacity: 1;
+}
+
+/* Rounded slider */
+.slider.round {
+  border-radius: 38px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}
