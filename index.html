@@ -11,80 +11,128 @@
 </head>
 <body class="bg-gray-50 relative">
     
-<!-- ======= HEADER SALDO ======= -->
-<header id="header-saldo" class="bg-gradient-to-r from-blue-700 to-blue-600 pb-12 pt-6 relative">
-  <!-- SALDO CARD -->
-  <div id="saldoCard" class="bg-white rounded-xl p-3 shadow-lg mx-4 -mb-6">
-    <!-- TOP ROW -->
-    <div class="flex justify-between items-start mb-2">
-      <div class="flex items-center space-x-2">
-        <img src="https://cdn-icons-png.flaticon.com/512/891/891462.png" alt="icon" class="w-5 h-5">
-        <span class="font-semibold text-base">davigo</span>
+<!-- ======= HEADER SALDO (Fix + Withdraw + Eye Icon) ======= -->
+<header id="header-saldo" class="bg-gradient-to-r from-blue-700 to-blue-600 pb-14 pt-6 relative">
+  <!-- ATAS: USER + TOMBOL -->
+  <div class="px-4 flex justify-between items-center mb-4">
+    <div class="flex items-center space-x-2">
+      <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+        </svg>
       </div>
-
-      <!-- Tombol kanan -->
-      <div class="flex space-x-2">
-        <button id="topUpBtn" class="relative flex flex-col items-center">
-          <span class="absolute -top-2 bg-green-600 text-white text-[10px] px-1 rounded-full">Gratis</span>
-          <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-            </svg>
-          </div>
-          <span class="text-xs mt-1">Top Up</span>
-        </button>
-
-        <button id="withdrawBtn" class="relative flex flex-col items-center">
-          <span class="absolute -top-2 bg-green-600 text-white text-[10px] px-1 rounded-full">Gratis</span>
-          <div class="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-          <span class="text-xs mt-1">Tarik</span>
+      <div>
+        <p class="text-white font-semibold">Hai, GUNS AREA REAL </p>
+        <button class="bg-white text-blue-700 text-xs font-medium px-3 py-1 rounded-lg shadow">
+          dap***@gmail.com
         </button>
       </div>
     </div>
 
-    <!-- SALDO -->
-    <div class="flex items-center space-x-2 mb-1">
-      <p class="font-bold text-2xl text-gray-800">Rp<span id="balance">658.500</span></p>
-      <button id="toggleSaldoBtn" class="p-1 rounded-full bg-gray-100 border border-gray-300">
-        <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-600" fill="none"
-          viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 
-               4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-      </button>
+    <button id="refreshSaldoBtn" class="flex flex-col items-center text-white text-xs">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 4v5h.582M20 20v-5h-.581M4 9c1.67-3.315 
+             5.05-5.5 8.997-5.5S20.325 5.685 22 9m0 0v5h-.581M2 
+             14v-5h.582" />
+      </svg>
+      Refresh Saldo
+    </button>
+  </div>
+
+  <!-- CARD SALDO -->
+  <div id="saldoCard" class="bg-white rounded-xl mx-4 p-4 shadow-md -mb-10">
+    <div class="flex justify-between items-center mb-2">
+      <div>
+        <p class="text-sm text-gray-600">Saldo Anda</p>
+        <div class="flex items-center space-x-2">
+          <p class="font-bold text-2xl text-gray-800">Rp<span id="balance">1.487.500</span></p>
+          <!-- Eye icon kecil, di kanan saldo -->
+          <button id="toggleSaldoBtn" class="p-1 rounded-full bg-gray-100 border border-gray-300">
+            <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 
+                   8.268 2.943 9.542 7-1.274 
+                   4.057-5.064 7-9.542 7-4.477 
+                   0-8.268-2.943-9.542-7z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="text-right">
+        <p class="text-sm text-gray-600">Poin Anda</p>
+        <p class="text-base font-bold text-blue-700"><span id="poin">16</span> Poin</p>
+      </div>
     </div>
-    <p class="text-xs text-gray-500 mb-3">Coins David 3</p>
 
-    <!-- MENU BAWAH -->
-    <div class="flex space-x-2">
-      <button class="flex-1 bg-blue-50 py-2 px-2 rounded-full text-xs flex items-center justify-center space-x-1">
-        <span>Asuransi mulai 1rb</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
+    <!-- MENU 5 KOLOM -->
+<div class="grid grid-cols-5 gap-2 mt-2 border-t pt-3">
+      <!-- TopUp -->
+      <button id="topUpBtn" class="flex flex-col items-center text-xs text-gray-700">
+        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+          </svg>
+        </div>
+        Isi Saldo
       </button>
 
-      <button class="flex-1 bg-blue-50 py-2 px-2 rounded-full text-xs flex items-center justify-center space-x-1">
-        <span>Aktifin Pinjam</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
+      <!-- Withdraw -->
+      <button id="withdrawBtn" class="flex flex-col items-center text-xs text-gray-700">
+        <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+              d="M12 8v8m0 0l-4-4m4 4l4-4M4 4h16v16H4z" />
+          </svg>
+        </div>
+        Tarik Dana
+      </button>
+
+      <!-- Riwayat -->
+      <button id="riwayatBtn" class="flex flex-col items-center text-xs text-gray-700">
+        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
+          </svg>
+        </div>
+        Riwayat
+      </button>
+
+      <!-- Downline -->
+      <button id="downlineBtn" class="flex flex-col items-center text-xs text-gray-700">
+        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5V4H2v16h5m10-5a3 3 0 
+                 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </div>
+        Downline
+      </button>
+
+      <!-- Bantuan -->
+      <button id="bantuanBtn" class="flex flex-col items-center text-xs text-gray-700">
+        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18.364 5.636l-12.728 
+                 12.728M6.343 6.343l11.314 11.314" />
+          </svg>
+        </div>
+        Bantuan
       </button>
     </div>
   </div>
 </header>
-
 
   <!-- ======= MAIN (ASLI) ======= -->
   <main id="mainScroll" class="pb-24 overflow-y-auto with-bottom-space" style="height: calc(100% - 230px)">
