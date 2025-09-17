@@ -1155,7 +1155,7 @@ body {
   background: #fff; /* putih penuh */
   min-height: 100vh;
   margin: 0;
-  padding-bottom: 100px; /* ruang untuk bottom nav */
+  padding-bottom: 150px; /* ruang untuk bottom nav */
 }
 
 /* Bottom nav */
@@ -1179,7 +1179,7 @@ body {
 }
 .bottom-nav {
   position: fixed;
-  bottom: 10px; /* ruang bawah 10px */
+  bottom: 50px; /* ruang bawah 10px */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
