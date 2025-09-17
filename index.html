@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aplikasi DANA Davigo - Layanan Lengkap</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- CSS Custom kamu -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="bg-gray-50 relative">
-    
 <!-- ======= HEADER SALDO (Fix + Withdraw + Eye Icon) ======= -->
 <header id="header-saldo" class="bg-gradient-to-r from-blue-700 to-blue-600 pb-14 pt-6 relative">
   <!-- ATAS: USER + TOMBOL -->
@@ -134,186 +121,134 @@
   </div>
 </header>
 
-  <!-- ======= MAIN (ASLI) ======= -->
-  <main id="mainScroll" class="pb-24 overflow-y-auto with-bottom-space" style="height: calc(100% - 230px)">
+<!-- ======= MAIN (UPGRADED SLIM) ======= -->
+<main id="mainScroll" class="pb-24 overflow-y-auto with-bottom-space" style="height: calc(100% - 230px)">
 
+  <!-- Section: Beranda -->
+  <section id="homeSection" class="p-5">
 
-<!-- Overlay (layout ke-2 full layar biru) -->
-<div id="overlay" class="overlay">
-  <button id="close" class="close-btn">✕</button>
+    <!-- Card Layanan -->
+    <div class="bg-white rounded-2xl shadow-lg p-4 relative overflow-hidden">
 
-  <!-- Section 1 -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Pembayaran</h2>
-      <button class="lihat-semua">Lihat semua →</button>
+      <!-- Title Layanan -->
+      <h2 class="text-base font-extrabold text-transparent bg-clip-text 
+                 bg-gradient-to-r from-blue-500 to-sky-400 mb-4 
+                 animate-pulse-glow">
+        ⚡ Layanan
+      </h2>
+
+      <!-- Grid Menu (4 kolom lebih ramping) -->
+      <div class="grid grid-cols-4 gap-3">
+
+        <!-- Pulsa/Data -->
+        <button id="pulsaDataBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://cdn-icons-png.flaticon.com/512/1041/1041883.png"
+            alt="Pulsa Data" class="w-8 h-8 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            Pulsa/Data
+          </span>
+        </button>
+
+        <!-- Listrik -->
+        <button id="listrikBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://img.icons8.com/color/48/electricity.png"
+            alt="Token Listrik" class="w-8 h-8 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            Listrik
+          </span>
+        </button>
+
+        <!-- Top Up Game -->
+        <button id="topUpGameBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://raw.githubusercontent.com/dfandrn/Gambar/refs/heads/main/file_00000000232c622fa29bb39098993afc.png"
+            alt="Top Up Game" class="w-8 h-8 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            Top Up Game
+          </span>
+        </button>
+
+        <!-- Davigo Point -->
+        <button id="davigoPointBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-37-689.png"
+            alt="Davigo Point" class="w-8 h-8 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            Davigo Point
+          </span>
+        </button>
+
+        <!-- All Menu -->
+        <button id="trigger"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            All Menu
+          </span>
+        </button>
+
+        <!-- Promo Google Play -->
+        <button id="gplayPromoBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-06_19-38-40-018.jpg"
+            alt="Google Play" class="w-10 h-10 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            Google Play
+          </span>
+        </button>
+
+        <!-- GoFood -->
+        <button id="gofoodBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-06-967.png"
+            alt="GoFood" class="w-10 h-10 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            GoFood
+          </span>
+        </button>
+
+        <!-- E-Money -->
+        <button id="emoneyBtn"
+          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
+          <img src="https://img.icons8.com/color/48/sim-card-chip.png"
+            alt="E-Money" class="w-8 h-8 object-contain mb-1">
+          <span class="text-[11px] font-semibold text-gray-700 text-center">
+            E-Money
+          </span>
+        </button>
+
+      </div>
     </div>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/money-transfer.png"/></div>
-        Pulsa
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/electricity.png"/></div>
-        PLN
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/sim-card-chip.png"/></div>
-        Paket Data
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/money.png"/></div>
-        E-Money
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/google-play.png"/></div>
-        Google Play
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/controller.png"/></div>
-        Top Up Game
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/bill.png"/></div>
-        Bayar Tagihan
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/restaurant.png"/></div>
-        GoFood
-      </div>
-    </div>
-  </div>
+ 
 
-  <!-- Section 2 -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Promo & Hiburan</h2>
-      <button class="lihat-semua">Lihat semua →</button>
-    </div>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/cat.png"/></div>
-        GoPay Pet
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/ticket.png"/></div>
-        Voucher
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/invoice.png"/></div>
-        Tagihan
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/gift.png"/></div>
-        Rewards
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/lazada.png"/></div>
-        Lazada
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/play-button-circled.png"/></div>
-        Nonton
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/medal.png"/></div>
-        Populer
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/shopping-cart.png"/></div>
-        Belanja
-      </div>
-    </div>
-  </div>
-</div>
-
-
-    
-<!-- Section: Beranda -->
-<section id="homeSection" class="p-5">
-  <div class="grid grid-cols-4 gap-3 mb-5">
-    
-    <!-- Pulsa/Data -->
-<button id="pulsaDataBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://cdn-icons-png.flaticon.com/512/1041/1041883.png" 
-       alt="Pulsa Data" class="w-8 h-8 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">Pulsa/Data</span>
-</button>
-
-<!-- Listrik -->
-<button id="listrikBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://img.icons8.com/color/48/electricity.png" 
-       alt="Token Listrik" class="w-8 h-8 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">Listrik</span>
-</button>
-
-<!-- top up game -->
-<button id="topUpGameBtn"
- class="feature-card flex flex-col items-center bg-white p-3 rounded-lg shadow-sm transition duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-    <img src="https://raw.githubusercontent.com/dfandrn/Gambar/refs/heads/main/file_00000000232c622fa29bb39098993afc.png"  
-         alt="Top Up Game" class="w-8 h-8 object-contain">
-  <span class="text-[11px] font-medium text-gray-700">Top Up Game</span>
-</button>
-
-<!-- Davigo Point button -->
-<button id="davigoPointBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-37-689.png" 
-       alt="Davigo Point" class="w-8 h-8 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">Davigo Point</span>
-</button>
-
-<!-- All Menu -->
-<button id="trigger" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-  </svg>
-  <span class="text-[11px] font-medium text-gray-700">All Menu</span>
-</button>
-
-    <!-- Promo Google Play -->
-<button id="gplayPromoBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-06_19-38-40-018.jpg" 
-       alt="Google Play" class="w-16 h-16 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">Promo Google Play</span>
-</button>
-
-<!-- GoFood -->
-<button id="gofoodBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-06-967.png" 
-       alt="GoFood" class="w-16 h-16 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">GoFood</span>
-</button>
-
-<!-- E-Money -->
-<button id="emoneyBtn" 
-  class="feature-card flex flex-col items-center bg-white p-3 rounded-xl shadow-sm 
-         transition-all duration-300 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-  <img src="https://img.icons8.com/color/48/sim-card-chip.png" 
-       alt="E-Money" class="w-8 h-8 object-contain mb-2">
-  <span class="text-[11px] font-medium text-gray-700">E-Money</span>
-</button>
-  </div>
-
-  <!--  notif kecil -->
+<!--  notif kecil -->
 <div class="notif-group">
 
   <!-- Notifikasi kecil -->
   <div class="notif-small" id="notifSmall">
     <div class="left">
       <span class="notif-text-wrapper glitch" data-text="📣 Beberapa orang 👉 🎁 DANA Deals oleh 👩‍👩‍👦">
-        📣 Beberapa orang 👉 🎁 <strong>DANA Deals</strong> oleh 👩‍👩‍👦
+        📣 Beberapa orang 👉 🎁 <strong>DAVIGO Deals</strong> oleh 👩‍👩‍👦
       </span>
     </div>
     <div class="right">
@@ -341,17 +276,13 @@
         <img src="https://placehold.co/36x36/0044CC/FFFFFF?text=%F0%9F%9A%9A" alt="DANA" id="notifCard2Icon">
       </div>
       <div class="notif-text" id="notifCard2Text">
-        <strong>DANA</strong> Bayar STNK praktis via e-Samsat di DANA
+        <strong>Kamu</strong> Bayar STNK praktis via e-Samsat di DAVIGO
       </div>
     </div>
     <div class="notif-time" id="notifCard2Time">9m</div>
   </div>
 
 </div>
-
-
-
-
 
   <!-- Promo Slider -->
   <div class="promo-slider mb-4">
@@ -373,6 +304,8 @@
       </div>
     </div>
   </div>
+
+
 
 <!--dana protection-->
 <div class="container">
@@ -458,8 +391,9 @@
     </ul>
   </div>
 
+
 <!-- ====== Section Promo Kecil Full White ====== -->
-<div class="bg-white text-gray-900 rounded-lg shadow w-full max-w-sm mx-auto overflow-hidden">
+<div class="bg-white text-gray-900 rounded-lg shadow w-full max-w-sm mx-auto overflow-hidden mt-6">
   <!-- Bagian Atas: Judul + Tombol -->
   <div class="p-3 flex items-center justify-between">
     <h2 class="text-sm font-semibold truncate pr-2">
@@ -476,7 +410,7 @@
   <!-- Deskripsi -->
   <div class="px-3 pb-2 text-center">
     <p class="text-xs text-gray-600 leading-snug">
-      Ada hadiah GoPay Saldo s.d. <span class="font-bold text-gray-900">150.000</span> buat kamu.  
+      Ada hadiah Davigo Saldo s.d. <span class="font-bold text-gray-900">150.000</span> buat kamu.  
       Buruan dapetin sebelum kehabisan!
     </p>
     <p class="mt-1 text-xs font-semibold text-green-600">
@@ -506,7 +440,8 @@
     </span>
   </label>
 </div>
-  
+
+
 <!-- Footer -->
   <p class="footer-text">
     DAVIGO Indonesia terdaftar serta diawasi oleh <br/>
@@ -514,14 +449,16 @@
   </p>
 </div>
 </section>
-
-    
 <!-- Section lain jangan nyambung -->
 <section id="activitySection" class="p-5 hidden">
   <h2 class="text-lg font-semibold mb-3">Aktivitas</h2>
   <div id="txnList" class="bg-white rounded-xl p-3">
     <div class="empty-state" id="emptyTxn">Belum ada transaksi.</div>
   </div>
+        <!-- syarat berfungsi riwayat trx -->
+      <div id="txnSummary" class="hidden p-4 font-semibold text-gray-800 text-lg"></div>
+<div id="txnList" class="hidden"></div>
+<div id="emptyTxn" class="hidden text-center text-gray-500 p-4">Belum ada transaksi</div>
 </section>
 
 <section id="paySection" class="p-5 hidden">
@@ -538,7 +475,7 @@
     <ul class="text-sm text-gray-600 space-y-2">
       <li>Bank tertaut: -</li>
       <li>Kartu: -</li>
-      <li>Limit harian: Rp 5.000.000</li>
+      <li>Limit harian: Rp 5.000.000.000</li>
     </ul>
   </div>
 </section>
@@ -567,13 +504,104 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-2m0 0h4V9h-4v6z"/>
         </svg><span>Dompet</span>
       </button>
-      <button id="tabLogout">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m0-10V5a2 2 0 114 0v1"/>
-        </svg><span>Logout</span>
-      </button>
+      <button id="tabLogout" class="flex flex-col items-center text-gray-500">
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       class="h-5 w-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m0-10V5a2 2 0 114 0v1"/>
+  </svg>
+  <span>Profil</span>
+</button>
     </div>
   </nav>
+
+<!-- Fullscreen Profile Dana Style -->
+<div id="popupLogout" class="hidden fixed top-0 left-0 right-0 bottom-16 bg-white z-40 flex flex-col font-sans select-none">
+  <!-- Header Biru -->
+  <header class="bg-blue-600 text-white pb-6 pt-8 px-5 shadow-md relative">
+    <!-- Tabs Personal / Bisnis -->
+    <nav class="flex justify-center gap-4 mb-5">
+      <button class="px-4 py-1.5 rounded-full bg-white/30 text-white font-semibold">Personal</button>
+      <button class="px-4 py-1.5 rounded-full text-white/70 hover:text-white">Bisnis</button>
+    </nav>
+
+    <!-- User Info -->
+    <section class="flex items-center gap-4">
+      <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white">
+        <img src="https://i.pravatar.cc/100" alt="User Avatar" class="w-full h-full object-cover" />
+      </div>
+      <div>
+        <h1 class="text-xl font-bold">DAPAA</h1>
+        <p class="text-sm opacity-80">0895••••7014</p>
+        <button class="mt-2 inline-flex items-center gap-1 bg-white text-blue-600 text-xs font-semibold px-3 py-1 rounded-full shadow">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h1m4 0h1m4 0h1m4 0h1M3 14h1m4 0h1m4 0h1m4 0h1M3 18h1m4 0h1m4 0h1m4 0h1"/>
+          </svg>
+          QR SAYA
+        </button>
+      </div>
+    </section>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 overflow-y-auto bg-gray-50 p-4 space-y-5">
+    <!-- Verifikasi akun -->
+    <section class="bg-white rounded-xl shadow p-4">
+      <button class="w-full py-3 bg-blue-50 text-blue-600 font-semibold rounded-lg">VERIFIKASI AKUN</button>
+      <p class="text-xs text-gray-500 mt-2">Aktifkan DANA Viz agar selalu aman</p>
+      <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
+        <div class="bg-blue-600 h-1.5 rounded-full w-1/5"></div>
+      </div>
+    </section>
+
+    <!-- Saldo & Goals -->
+    <section class="grid grid-cols-2 gap-3">
+      <article class="bg-white rounded-xl shadow p-4 text-center">
+        <p class="text-sm text-gray-500">Saldo</p>
+        <p class="text-lg font-bold text-blue-600">Rp 11.816</p>
+      </article>
+      <article class="bg-white rounded-xl shadow p-4 text-center">
+        <p class="text-sm text-gray-500">DANA Goals</p>
+        <p class="text-lg font-bold text-red-500">Buat impian!</p>
+      </article>
+      <article class="bg-white rounded-xl shadow p-4 text-center">
+        <p class="text-sm text-gray-500">Rek. Keluarga</p>
+        <p class="text-sm text-blue-600 font-semibold">Aktivasi Yuk!</p>
+      </article>
+      <article class="bg-white rounded-xl shadow p-4 text-center">
+        <p class="text-sm text-gray-500">eMAS</p>
+        <p class="text-sm text-yellow-500 font-semibold">Mulai Inves Yuk</p>
+      </article>
+    </section>
+
+    <!-- Uang Masuk / Keluar -->
+    <section class="bg-white rounded-xl shadow p-4 flex justify-between">
+      <div class="text-center">
+        <p class="text-sm text-gray-500">Uang Masuk</p>
+        <p class="text-green-600 font-bold">Rp20.000</p>
+      </div>
+      <div class="text-center">
+        <p class="text-sm text-gray-500">Uang Keluar</p>
+        <p class="text-red-500 font-bold">Rp10.998</p>
+      </div>
+    </section>
+
+    <!-- DIANA bantuan -->
+    <section class="bg-white rounded-xl shadow p-4 flex gap-3 items-center">
+      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">D</div>
+      <div>
+        <p class="font-semibold text-gray-800 text-sm">DIANA siap membantu!</p>
+        <p class="text-xs text-gray-500">Yuk ngobrol langsung untuk mendapatkan bantuan.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="p-4 border-t bg-white flex flex-col gap-3">
+    <button id="keluarBtn" class="w-full py-3 rounded-xl bg-red-600 text-white font-bold shadow hover:bg-red-700"></button>
+    <button id="batalBtn" class="w-full py-3 rounded-xl bg-gray-200 text-gray-800 font-semibold"></button>
+  </footer>
+</div>
 
   <!-- ======= MODAL VERIFIKASI AWAL (LOGIN) ======= -->
   <div id="startupVerify">
@@ -655,12 +683,163 @@
 </div>
 
 
+
+
+
+<!-- sheet Overlay (layout ke-2 full layar biru) -->
+<div id="overlay" class="overlay">
+  <button id="close" class="close-btn">✕</button>
+  <div class="overlay-header">
+    <div class="header-icon">&#x25C0;</div>
+    <div>Semua Layanan</div>
+    <div class="header-icon">&#128269;</div>
+  </div>
+
+  <!-- Favorit Saya Section -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Favorit Saya</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/money-transfer.png"/></div>
+        Pulsa & Data
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/percent-off.png"/></div>
+        DANA Deals
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/reward.png"/></div>
+        A+ Rewards
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/google-play.png"/></div>
+        Google Play Zone
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/lazada.png"/></div>
+        Hemat s.d 80%
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/electricity.png"/></div>
+        Listrik
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/bill.png"/></div>
+        e-SBN
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon"><img src="https://img.icons8.com/color/48/sort-up.png"/></div>
+        Ubah
+      </div>
+    </div>
+  </div>
+
+  <!-- Terakhir Dibuka -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Terakhir Dibuka</h2>
+      <div class="filter-icons">
+        <img src="https://img.icons8.com/color/24/bill.png" style="width:16px; height:16px;"/>
+        <img src="https://img.icons8.com/color/24/money-transfer.png" style="width:16px; height:16px;"/>
+        <img src="https://img.icons8.com/color/24/safe--v1.png" style="width:16px; height:16px;"/>
+        <span>+5</span>
+      </div>
+    </div>
+    
+    <div class="promo-banner">
+      <img src="https://img.icons8.com/color/48/bill.png" style="width:40px; height:40px;"/>
+      <div class="promo-content">
+        e-SBN <span style="background:#ffbb11; padding:1px 6px; border-radius:10px; font-weight:600; font-size:12px; color:#fff;">Baru!</span><br/>
+        Investasi SR023<br/>
+        Cashback <strong>80 Ribu</strong>
+      </div>
+      <button class="coba-btn">COBA</button>
+    </div>
+  </div>
+
+  <!-- Transfer Section -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Transfer</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#00b14f;"><img src="https://img.icons8.com/color/48/money.png"/></div>
+        Kode Tunai
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#0066cc;"><img src="https://img.icons8.com/color/48/payment-card.png"/></div>
+        DANA Kaget
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#008c0c;"><img src="https://img.icons8.com/color/48/document.png"/></div>
+        Bayar Patungan
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/telegram-app.png"/></div>
+        Kirim ke Chat
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#fca311;"><img src="https://img.icons8.com/color/48/bank.png"/></div>
+        Kirim ke Bank
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#ff4f4f;"><img src="https://img.icons8.com/color/48/cash-in-hand.png"/></div>
+        Tarik Tunai
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/group.png"/></div>
+        Kirim ke Grup
+      </div>
+    </div>
+  </div>
+
+  <!-- Bisa ditambah section lain sesuai keperluan -->
+      <!-- Transfer Section -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Transfer</h2>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#00b14f;"><img src="https://img.icons8.com/color/48/money.png"/></div>
+        Kode Tunai
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#0066cc;"><img src="https://img.icons8.com/color/48/payment-card.png"/></div>
+        DANA Kaget
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#008c0c;"><img src="https://img.icons8.com/color/48/document.png"/></div>
+        Bayar Patungan
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/telegram-app.png"/></div>
+        Kirim ke Chat
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#fca311;"><img src="https://img.icons8.com/color/48/bank.png"/></div>
+        Kirim ke Bank
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#ff4f4f;"><img src="https://img.icons8.com/color/48/cash-in-hand.png"/></div>
+        Tarik Tunai
+      </div>
+      <div class="menu-item">
+        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/group.png"/></div>
+        Kirim ke Grup
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ======= SHEET LISTRIK ======= -->
 <div id="listrikSheet" class="sheet">
   <div class="handle"></div>
   <div class="title flex justify-between items-center">
   <span>Listrik Prabayar</span>
-<button class="closeSheetBtn">&times;</button>
+<button class="closeSheetBtn ...">&times;</button>
   </div>
   <div class="body">
     <div class="bg-white rounded-xl p-3 mb-3 border">
@@ -843,11 +1022,9 @@
         Tukar Coin ke Saldo
       </button>
       
-       <button id="carRestartBtn" class="mt-2 bg-green-500 text-white px-3 py-1 rounded">Mulai Ulang</button>
+       <button id="carRestartBtn" class="mt-2 bg-green-500 text-white px-3 py-1 rounded">Mulai Ulang</button> 
     </div>
   </div>
-</div>
-  <!-- JS dipanggil di akhir BODY -->
-  <script src="script.js"></script>
+</div> 
 </body>
 </html>
