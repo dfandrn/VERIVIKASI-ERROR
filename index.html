@@ -5,42 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aplikasi DANA Davigo - Layanan Lengkap</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- CSS Custom kamu -->
+  <script src="https://cdn.tailwindcss.com"></script> 
+    <!-- CSS Custom kamu -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-gray-50 relative">
+    
   
-<!-- ======= HEADER SALDO (Final Version) ======= -->
+
+<!-- ======= HEADER SALDO (Versi sejajar) ======= -->
 <header id="header-saldo" class="bg-gradient-to-r from-blue-700 to-blue-600 pt-10 pb-14 relative">
-  <!-- ATAS: USER + TOMBOL -->
+  <!-- ATAS: USER + TOMBOL REFRESH sejajar -->
   <div class="px-4 flex justify-between items-center mb-4">
+    
+    <!-- Bagian kiri: Foto + Nama + Email -->
     <div class="flex items-center space-x-3">
-      <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
-        </svg>
+      <div class="w-12 h-12 rounded-full bg-white flex items-center justify-center overflow-hidden">
+        <img src="https://raw.githubusercontent.com/dfandrn/img/main/Screenshot_2025-09-21-13-27-05-35_f69139cffc4d135a71392e13634f144a.jpg" alt="Foto Profil" class="w-full h-full object-cover">
       </div>
-      <div class="pt-2"> <!-- turun sedikit -->
-        <p class="text-white font-semibold text-lg">Hai, GUNS AREA REAL </p>
-        <button class="bg-white text-blue-700 text-xs font-medium px-3 py-1 rounded-lg shadow">
-          dap***@gmail.com
+      <div class="pt-2">
+        <p class="text-white font-semibold text-lg">Davigo</p>
+        <button class="bg-white text-gray-700 text-xs font-medium px-3 py-1 rounded-lg shadow">
+          089526797014
         </button>
       </div>
     </div>
 
-    <!-- Refresh saldo -->
-<button id="refreshSaldoBtn" class="flex flex-col items-center text-white text-xs">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24"
-        stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 4v5h.582M20 20v-5h-.581M4 9c1.67-3.315 
-             5.05-5.5 8.997-5.5S20.325 5.685 22 9m0 0v5h-.581M2 
-             14v-5h.582" />
-      </svg>
-      Refresh Saldo
-    </button>
-  </div>
+    <!-- Bagian kanan: Tombol Refresh -->
+<button id="refreshSaldoBtn" 
+  class="flex flex-col items-center text-white text-xs mr-2"> <!-- geser ke kiri -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mb-1" fill="none" viewBox="0 0 24 24"
+    stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M4 4v5h.582M20 20v-5h-.581M4 9c1.67-3.315 
+         5.05-5.5 8.997-5.5S20.325 5.685 22 9m0 0v5h-.581M2 
+         14v-5h.582" />
+  </svg>
+  Refresh
+</button>
+</div>
 
   <!-- CARD SALDO -->
   <div id="saldoCard" class="bg-white rounded-xl mx-4 p-4 shadow-md -mb-10">
@@ -48,7 +51,7 @@
       <div>
         <p class="text-sm text-gray-600">Saldo Anda</p>
         <div class="flex items-center space-x-2">
-          <p class="font-bold text-2xl text-gray-800">Rp<span id="balance">1.487.500</span></p>
+          <p class="font-bold text-xl text-gray-700">Rp<span id="balance">1.487.500</span></p>
           <!-- Eye icon kecil, di kanan saldo -->
           <button id="toggleSaldoBtn" class="p-1 rounded-full bg-gray-100 border border-gray-300">
             <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none"
@@ -66,74 +69,55 @@
       </div>
       <div class="text-right">
         <p class="text-sm text-gray-600">Poin Anda</p>
-        <p class="text-base font-bold text-blue-700"><span id="poin">16</span> Poin</p>
+        <p class="text-base font-bold text-gray-700"><span id="poin">♐0</span> Poin</p>
       </div>
     </div>
 
-    <!-- MENU 5 KOLOM -->
-<div class="grid grid-cols-5 gap-2 mt-2 border-t pt-3">
-      <!-- TopUp -->
-      <button id="topUpBtn" class="flex flex-col items-center text-xs text-gray-700">
-        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-        </div>
-        Isi Saldo
-      </button>
+<!-- MENU 5 KOLOM -->
+<div class="grid grid-cols-5 gap-2 mt-8 border-t pt-5">
+  <!-- TopUp -->
+  <button id="topUpBtn" class="flex flex-col items-center text-xs text-gray-700">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-1 overflow-hidden bg-white-100 shadow">
+      <img src="https://raw.githubusercontent.com/dfandrn/img/main/Screenshot_2025-09-18-23-27-01-16_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Isi Saldo" class="w-6 h-6 object-contain">
+    </div>
+    Isi Saldo
+  </button>
 
-      <!-- Withdraw -->
-      <button id="withdrawBtn" class="flex flex-col items-center text-xs text-gray-700">
-        <div class="w-10 h-10 bg-red-50 rounded-full flex items-center justify-center mb-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M12 8v8m0 0l-4-4m4 4l4-4M4 4h16v16H4z" />
-          </svg>
-        </div>
-        Tarik Dana
-      </button>
+  <!-- Withdraw -->
+  <button id="withdrawBtn" class="flex flex-col items-center text-xs text-gray-700">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-1 overflow-hidden bg-white-100 shadow">
+      <img src="https://raw.githubusercontent.com/dfandrn/img/main/Screenshot_2025-09-18-23-27-38-70_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Tarik Dana" class="w-6 h-6 object-contain">
+    </div>
+    Tarik Dana
+  </button>
 
-      <!-- Riwayat -->
-      <button id="riwayatBtn" class="flex flex-col items-center text-xs text-gray-700">
-        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
-          </svg>
-        </div>
-        Riwayat
-      </button>
+  <!-- Riwayat -->
+  <button id="riwayatBtn" class="flex flex-col items-center text-xs text-gray-700">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-1 overflow-hidden bg-white-100 shadow">
+      <img src="https://raw.githubusercontent.com/dfandrn/img/main/Screenshot_2025-09-19-09-23-59-78_40deb401b9ffe8e1df2f1cc5ba480b12.jpg" alt="Riwayat" class="w-6 h-6 object-contain">
+    </div>
+    Riwayat
+  </button>
 
-      <!-- Downline -->
-      <button id="downlineBtn" class="flex flex-col items-center text-xs text-gray-700">
-        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M17 20h5V4H2v16h5m10-5a3 3 0 
-                 11-6 0 3 3 0 016 0z" />
-          </svg>
-        </div>
-        Downline
-      </button>
+  <!-- Downline -->
+  <button id="downlineBtn" class="flex flex-col items-center text-xs text-gray-700">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-1 overflow-hidden bg-white-100 shadow">
+      <img src="https://raw.githubusercontent.com/dfandrn/img/main/account.png" alt="Downline" class="w-6 h-6 object-contain">
+    </div>
+    Downline
+  </button>
 
-      <!-- Bantuan -->
-      <button id="bantuanBtn" class="flex flex-col items-center text-xs text-gray-700">
-        <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center mb-1">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24"
-            stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M18.364 5.636l-12.728 
-                 12.728M6.343 6.343l11.314 11.314" />
-          </svg>
-        </div>
-        Bantuan
-      </button>
+  <!-- Bantuan -->
+  <button id="bantuanBtn" class="flex flex-col items-center text-xs text-gray-700">
+    <div class="w-10 h-10 rounded-full flex items-center justify-center mb-1 overflow-hidden bg-white-100 shadow">
+      <img src="https://raw.githubusercontent.com/dfandrn/img/main/bookmark_6497258.png" alt="Bantuan" class="w-6 h-6 object-contain">
+    </div>
+    Bantuan
+  </button>
     </div>
   </div>
 </header>
+
 <!-- ======= MAIN (UPGRADED SLIM) ======= -->
 <main id="mainScroll" class="pb-24 overflow-y-auto with-bottom-space" style="height: calc(100% - 230px)">
 
@@ -143,12 +127,6 @@
     <!-- Card Layanan -->
     <div class="bg-white rounded-2xl shadow-lg p-4 relative overflow-hidden">
 
-      <!-- Title Layanan -->
-      <h2 class="text-base font-extrabold text-transparent bg-clip-text 
-                 bg-gradient-to-r from-blue-500 to-sky-400 mb-4 
-                 animate-pulse-glow">
-        ⚡ Layanan
-      </h2>
 
       <!-- Grid Menu (4 kolom lebih ramping) -->
       <div class="grid grid-cols-4 gap-3">
@@ -226,17 +204,15 @@
           </span>
         </button>
 
-        <!-- GoFood -->
-        <button id="gofoodBtn"
-          class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
-                 hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
-                 hover:shadow-lg hover:-translate-y-1 active:scale-95">
-          <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-06-967.png"
-            alt="GoFood" class="w-10 h-10 object-contain mb-1">
-          <span class="text-[11px] font-semibold text-gray-700 text-center">
-            GoFood
-          </span>
-        </button>
+<!-- Tombol GoFood -->
+<button id="gf-btn"
+  class="feature-card flex flex-col items-center p-3 rounded-xl bg-gradient-to-br from-gray-50 to-white 
+         hover:from-blue-50 hover:to-blue-100 shadow-md transition-all duration-300 
+         hover:shadow-lg hover:-translate-y-1 active:scale-95">
+  <img src="https://raw.githubusercontent.com/dfandrn/Gambar/main/Picsart_25-09-07_11-41-06-967.png"
+    alt="GoFood" class="w-10 h-10 object-contain mb-1">
+  <span class="text-[11px] font-semibold text-gray-700 text-center">GoFood</span>
+</button>
 
         <!-- E-Money -->
         <button id="emoneyBtn"
@@ -262,7 +238,7 @@
     <div class="left">
       <span class="notif-text-wrapper glitch" data-text="📣 Beberapa orang 👉 🎁 DANA Deals oleh 👩‍👩‍👦">
         📣 Beberapa orang 👉 🎁 <strong>DAVIGO Deals</strong> oleh 👩‍👩‍👦
-      </span>
+      </span> 
     </div>
     <div class="right">
       <span class="notif-text-wrapper glitch" data-text="🔥">🔥</span>
@@ -294,49 +270,47 @@
     </div>
     <div class="notif-time" id="notifCard2Time">9m</div>
   </div>
-
 </div>
 
-  <!-- Promo Slider -->
-  <div class="promo-slider mb-4">
-    <div class="slider-container" id="promoSlider">
-      <div class="slide">
-        <img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Cashback+pulsa+15%" alt="Diskon 20%">
-      </div>
-      <div class="slide">
-        <img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Cashback+Listrik+50%" alt="Cashback PLN">
-      </div>
-      <div class="slide">
-        <img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Google+Play+Voucher" alt="Google Play">
-      </div>
-      <div class="slide">
-        <img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Top+Up+Game+Bonus" alt="Game Bonus">
-      </div>
-      <div class="slide">
-        <img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Paket+Data+Ekstra" alt="Paket Data">
-      </div>
-    </div>
+
+<!-- promo slider -->
+<div class="promo-slider">
+  <div class="slider-container" id="promoSlider">
+    <div class="slide"><img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Cashback+pulsa+15%"></div>
+    <div class="slide"><img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Cashback+Listrik+50%"></div>
+    <div class="slide"><img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Google+Play+Voucher"></div>
+    <div class="slide"><img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Top+Up+Game+Bonus"></div>
+    <div class="slide"><img src="https://placehold.co/600x200/00AAEF/FFFFFF?text=Paket+Data+Ekstra"></div>
   </div>
+</div>
 
 
-
-<!--dana protection-->
+<!-- DANA Protection -->
 <div class="container">
   <!-- Protection Section -->
   <div class="section protection-section">
-    <div class="header">
-      <svg class="icon-shield" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007AFF" viewBox="0 0 24 24">
-        <path d="M12 1L3 5v6c0 5 3.7 10.74 9 12 5.3-1.26 9-7 9-12V5l-9-4zM10.59 15.58l-3.17-3.17 1.41-1.41 1.76 1.76 5.76-5.76 1.41 1.41-7.17 7.17z"/>
-      </svg>
-      <span class="header-text">5 aktivitas terlindungi!</span>
-      <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007AFF" viewBox="0 0 24 24">
+    <!-- Header biru -->
+    <div class="protection-header">
+      <div class="header-left">
+        <svg class="icon-shield" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 24 24">
+          <path d="M12 1L3 5v6c0 5 3.7 10.74 9 12 5.3-1.26 9-7 9-12V5l-9-4zM10.59 15.58l-3.17-3.17 1.41-1.41 1.76 1.76 5.76-5.76 1.41 1.41-7.17 7.17z"/>
+        </svg>
+        <span class="header-text">5 aktivitas terlindungi!</span>
+      </div>
+      <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#fff" viewBox="0 0 24 24">
         <path d="M9 18l6-6-6-6" />
       </svg>
     </div>
+    <!-- Garis putih kecil -->
+    <div class="header-divider"></div>
+
+    <!-- Search -->
     <input type="search" placeholder="Ada nomor telepon mencurigakan?" class="input-search" />
+
+    <!-- Action -->
     <div class="protection-action">
       <div class="protection-label">
-        <svg class="icon-lock" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#007AFF" viewBox="0 0 24 24">
+        <svg class="icon-lock" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#007AFF" viewBox="0 0 24 24">
           <path d="M12 17a2 2 0 100-4 2 2 0 000 4zm6-7h-1V7a5 5 0 00-10 0v3H6a2 2 0 00-2 2v6a2 2 0 002 2h12a2 2 0 002-2v-6a2 2 0 00-2-2zm-6-4a3 3 0 013 3v3H9V9a3 3 0 013-3z"/>
         </svg>
         <span class="protection-text">DANA PROTECTION</span>
@@ -344,6 +318,8 @@
       <button class="btn-secure"><span>20%</span> AMANKAN</button>
     </div>
   </div>
+</div>
+
 
   <!-- Deals Section -->
   <div class="section deals-section">
@@ -454,14 +430,15 @@
   </label>
 </div>
 
-
+</section>
 <!-- Footer -->
   <p class="footer-text">
     DAVIGO Indonesia terdaftar serta diawasi oleh <br/>
     <strong>Bank Sendiri </strong> dan <strong>Cipta </strong>
   </p>
 </div>
-</section>
+
+
 <!-- Section lain jangan nyambung -->
 <section id="activitySection" class="p-5 hidden">
   <h2 class="text-lg font-semibold mb-3">Aktivitas</h2>
@@ -494,7 +471,7 @@
 </section>
     
 
-<!-- ======= Bottom Navigation (tambahan) ======= -->
+  <!-- ======= Bottom Navigation (tambahan) ======= -->
   <nav class="bottom-nav">
     <div class="row">
       <button id="tabHome" class="active">
@@ -523,98 +500,183 @@
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 11-4 0v-1m0-10V5a2 2 0 114 0v1"/>
   </svg>
-  <span>Profil</span>
+  <span>exit</span>
 </button>
     </div>
   </nav>
 
-<!-- Fullscreen Profile Dana Style -->
-<div id="popupLogout" class="hidden fixed top-0 left-0 right-0 bottom-16 bg-white z-40 flex flex-col font-sans select-none">
-  <!-- Header Biru -->
-  <header class="bg-blue-600 text-white pb-6 pt-8 px-5 shadow-md relative">
-    <!-- Tabs Personal / Bisnis -->
-    <nav class="flex justify-center gap-4 mb-5">
-      <button class="px-4 py-1.5 rounded-full bg-white/30 text-white font-semibold">Personal</button>
-      <button class="px-4 py-1.5 rounded-full text-white/70 hover:text-white">Bisnis</button>
-    </nav>
-
-    <!-- User Info -->
-    <section class="flex items-center gap-4">
-      <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white">
-        <img src="https://i.pravatar.cc/100" alt="User Avatar" class="w-full h-full object-cover" />
+<!-- Loading Skeleton -->
+<div id="gf-loading" class="fixed inset-0 bg-white z-[9999] hidden overflow-y-auto">
+  <div class="max-w-md mx-auto p-4 space-y-4 animate-pulse">
+    
+    <!-- ðŸ”´ Header -->
+    <h1 class="text-2xl font-bold text-red-600">GoFood</h1>
+    
+    <!-- ðŸ” Search Bar Skeleton -->
+    <div class="bg-gray-200 rounded-full h-10 shadow-inner"></div>
+    
+    <!-- ðŸŽžï¸ Promo Slider Skeleton -->
+    <div class="flex space-x-3 overflow-x-auto no-scrollbar">
+      <div class="skeleton-item bg-gray-200 rounded-lg shadow-xl w-40 h-24"></div>
+      <div class="skeleton-item bg-gray-200 rounded-lg shadow-xl w-40 h-24"></div>
+      <div class="skeleton-item bg-gray-200 rounded-lg shadow-xl w-40 h-24"></div>
+    </div>
+    
+    <!-- ðŸ½ï¸ Menu List Skeleton -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
       </div>
-      <div>
-        <h1 class="text-xl font-bold">DAPAA</h1>
-        <p class="text-sm opacity-80">0895••••7014</p>
-        <button class="mt-2 inline-flex items-center gap-1 bg-white text-blue-600 text-xs font-semibold px-3 py-1 rounded-full shadow">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h1m4 0h1m4 0h1m4 0h1M3 14h1m4 0h1m4 0h1m4 0h1M3 18h1m4 0h1m4 0h1m4 0h1"/>
-          </svg>
-          QR SAYA
-        </button>
+      
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
       </div>
-    </section>
-  </header>
-
-  <!-- Main Content -->
-  <main class="flex-1 overflow-y-auto bg-gray-50 p-4 space-y-5">
-    <!-- Verifikasi akun -->
-    <section class="bg-white rounded-xl shadow p-4">
-      <button class="w-full py-3 bg-blue-50 text-blue-600 font-semibold rounded-lg">VERIFIKASI AKUN</button>
-      <p class="text-xs text-gray-500 mt-2">Aktifkan DANA Viz agar selalu aman</p>
-      <div class="w-full bg-gray-200 rounded-full h-1.5 mt-2">
-        <div class="bg-blue-600 h-1.5 rounded-full w-1/5"></div>
+      
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
       </div>
-    </section>
-
-    <!-- Saldo & Goals -->
-    <section class="grid grid-cols-2 gap-3">
-      <article class="bg-white rounded-xl shadow p-4 text-center">
-        <p class="text-sm text-gray-500">Saldo</p>
-        <p class="text-lg font-bold text-blue-600">Rp 11.816</p>
-      </article>
-      <article class="bg-white rounded-xl shadow p-4 text-center">
-        <p class="text-sm text-gray-500">DANA Goals</p>
-        <p class="text-lg font-bold text-red-500">Buat impian!</p>
-      </article>
-      <article class="bg-white rounded-xl shadow p-4 text-center">
-        <p class="text-sm text-gray-500">Rek. Keluarga</p>
-        <p class="text-sm text-blue-600 font-semibold">Aktivasi Yuk!</p>
-      </article>
-      <article class="bg-white rounded-xl shadow p-4 text-center">
-        <p class="text-sm text-gray-500">eMAS</p>
-        <p class="text-sm text-yellow-500 font-semibold">Mulai Inves Yuk</p>
-      </article>
-    </section>
-
-    <!-- Uang Masuk / Keluar -->
-    <section class="bg-white rounded-xl shadow p-4 flex justify-between">
-      <div class="text-center">
-        <p class="text-sm text-gray-500">Uang Masuk</p>
-        <p class="text-green-600 font-bold">Rp20.000</p>
+      
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
       </div>
-      <div class="text-center">
-        <p class="text-sm text-gray-500">Uang Keluar</p>
-        <p class="text-red-500 font-bold">Rp10.998</p>
-      </div>
-    </section>
 
-    <!-- DIANA bantuan -->
-    <section class="bg-white rounded-xl shadow p-4 flex gap-3 items-center">
-      <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">D</div>
-      <div>
-        <p class="font-semibold text-gray-800 text-sm">DIANA siap membantu!</p>
-        <p class="text-xs text-gray-500">Yuk ngobrol langsung untuk mendapatkan bantuan.</p>
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
       </div>
-    </section>
-  </main>
 
-  <!-- Footer -->
-  <footer class="p-4 border-t bg-white flex flex-col gap-3">
-    <button id="keluarBtn" class="w-full py-3 rounded-xl bg-red-600 text-white font-bold shadow hover:bg-red-700"></button>
-    <button id="batalBtn" class="w-full py-3 rounded-xl bg-gray-200 text-gray-800 font-semibold"></button>
-  </footer>
+      <div class="skeleton-item bg-white rounded-lg shadow-xl p-2 flex flex-col">
+        <div class="bg-gray-200 rounded w-full h-32"></div>
+        <div class="mt-2 h-3 bg-gray-200 rounded w-3/4"></div>
+        <div class="mt-1 h-3 bg-gray-200 rounded w-1/2"></div>
+        <div class="mt-auto flex justify-between items-center pt-2">
+          <div class="h-3 bg-gray-200 rounded w-12"></div>
+          <div class="h-6 w-6 bg-gray-200 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<!-- FULLSCREEN LAYOUT -->
+<div id="gf-layout" class="fixed inset-0 bg-gray-50 z-[9998] hidden overflow-auto">
+
+  <!-- Header -->
+  <div class="bg-white p-4 flex justify-between items-center shadow">  
+    <div class="flex items-center space-x-2">  
+      <h2 class="text-2xl font-extrabold text-red-600">GoFood</h2>  
+      <span class="bg-red-600 text-white text-xs font-semibold px-2 py-1 rounded-full">Murahh</span>  
+    </div>  
+    <div class="flex items-center space-x-3">  
+      <button id="aktivitas-btn" class="text-sm bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700">Aktivitas</button>  
+      <button id="gf-close" class="text-gray-900 text-lg font-bold hover:scale-110 transition">&times;</button>  
+    </div>  
+  </div> 
+
+  <!-- Banner + Carousel Promo -->
+  <div class="px-4 pt-3 relative mt-3">
+    <div class="relative overflow-hidden rounded-xl shadow-md">
+      <div id="promo-carousel" class="flex transition-transform duration-500">
+        <img src="https://raw.githubusercontent.com/dfandrn/img/main/promo_makan_murah.jpg" />
+        <img src="https://raw.githubusercontent.com/dfandrn/img/main/Acquisition_Surga_Makanan_Blog_1456x818_copy_9a90f08e43.jpg" />
+        <img src="https://raw.githubusercontent.com/dfandrn/img/main/Promo_Maksimal_FS_Mealtimes_Jan_Blog_1456x818_dc9b04c3d4.jpg" />
+      </div>
+    </div>
+    <!-- Carousel dots -->
+    <div id="carousel-indicators" class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20"></div>
+  </div>
+
+  <!-- Search dengan efek -->
+  <div class="px-4 mt-5">
+    <div id="search-wrapper" 
+         class="flex items-center bg-white rounded-full px-3 py-1.5 mb-2 
+                shadow-md border border-transparent
+                transition-all duration-300"> 
+      <span class="text-gray-400 mr-2">ðŸ”</span>
+      <input id="search-menu" 
+             type="text" 
+             placeholder="cari makanan favoritmu..."
+             class="flex-1 outline-none text-base text-gray-700 placeholder-gray-400" />
+    </div>
+  </div>
+
+  <!-- Teks Hemat -->
+  <div class="px-4 mt-3">
+    <p class="font-bold text-red-600 text-base md:text-lg">Hemat dan Murah</p>
+  </div>
+
+  <!-- Filter Promo + Kategori -->
+  <div class="px-4 mt-2 border-b border-gray-200 pb-2 relative">
+    <div class="flex items-center space-x-3 mb-2">
+      <button id="promo-btn" class="bg-red-600 text-white text-xs px-3 py-1 rounded-full hover:bg-red-700 transition">
+        Promo Spesial 
+      </button>
+    </div>
+    <div id="category-bar" class="flex space-x-4 overflow-x-auto no-scrollbar"></div>
+  </div>
+
+  <!-- Menu List dengan card lebih panjang -->
+  <div id="menu-list" class="w-full max-w-md mx-auto grid grid-cols-2 gap-4 p-4"></div>
+
+  <!-- Riwayat & Bayar -->
+  <div id="cart-layout" class="p-4 border-t mt-2 bg-gray-50 hidden">
+    <h3 class="font-bold text-red-600 mb-2">Riwayat Pesanan</h3>
+    <ul id="cart-list" class="text-sm mb-2 text-gray-900"></ul>
+    <div class="flex justify-between font-bold text-red-600 mb-2">
+      <span>Total</span>
+      <span id="cart-total">Rp0</span>
+    </div>
+    <button id="pay-btn" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Bayar</button>
+  </div>
+</div>
+
+<!-- Layout Aktivitas -->
+<div id="aktivitas-layout" class="fixed inset-0 bg-gray-100 z-[9999] hidden overflow-y-auto">  
+  <div class="bg-white p-4 flex justify-between items-center shadow">  
+    <h2 class="text-xl font-bold text-red-600">Aktivitas</h2>  
+    <button id="aktivitas-close" class="text-gray-900 text-lg font-bold hover:scale-110">&times;</button>  
+  </div>  
+  <div id="tx-list" class="p-4 space-y-3"></div>  
+</div>
+
+<!-- Overlay Detail Transaksi -->
+<div id="tx-detail-layout" class="fixed inset-0 bg-gray-100 z-[10000] hidden overflow-y-auto">
+  <div class="bg-white p-4 flex justify-between items-center shadow">
+    <h2 class="text-xl font-bold text-red-600">Detail Transaksi</h2>
+    <button id="tx-detail-close" class="text-gray-900 text-lg font-bold hover:scale-110">&times;</button>
+  </div>
+  <div id="tx-detail-list" class="p-4 space-y-3"></div>
+</div>
+
 
   <!-- ======= MODAL VERIFIKASI AWAL (LOGIN) ======= -->
   <div id="startupVerify">
@@ -654,6 +716,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- ======= SHEET PULSA/DATA ======= -->
 <div id="pulsaSheet" class="sheet">
@@ -696,157 +759,6 @@
 </div>
 
 
-
-
-
-<!-- sheet Overlay (layout ke-2 full layar biru) -->
-<div id="overlay" class="overlay">
-  <button id="close" class="close-btn">✕</button>
-  <div class="overlay-header">
-    <div class="header-icon">&#x25C0;</div>
-    <div>Semua Layanan</div>
-    <div class="header-icon">&#128269;</div>
-  </div>
-
-  <!-- Favorit Saya Section -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Favorit Saya</h2>
-    </div>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/money-transfer.png"/></div>
-        Pulsa & Data
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/percent-off.png"/></div>
-        DANA Deals
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/reward.png"/></div>
-        A+ Rewards
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/google-play.png"/></div>
-        Google Play Zone
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/lazada.png"/></div>
-        Hemat s.d 80%
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/electricity.png"/></div>
-        Listrik
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/bill.png"/></div>
-        e-SBN
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon"><img src="https://img.icons8.com/color/48/sort-up.png"/></div>
-        Ubah
-      </div>
-    </div>
-  </div>
-
-  <!-- Terakhir Dibuka -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Terakhir Dibuka</h2>
-      <div class="filter-icons">
-        <img src="https://img.icons8.com/color/24/bill.png" style="width:16px; height:16px;"/>
-        <img src="https://img.icons8.com/color/24/money-transfer.png" style="width:16px; height:16px;"/>
-        <img src="https://img.icons8.com/color/24/safe--v1.png" style="width:16px; height:16px;"/>
-        <span>+5</span>
-      </div>
-    </div>
-    
-    <div class="promo-banner">
-      <img src="https://img.icons8.com/color/48/bill.png" style="width:40px; height:40px;"/>
-      <div class="promo-content">
-        e-SBN <span style="background:#ffbb11; padding:1px 6px; border-radius:10px; font-weight:600; font-size:12px; color:#fff;">Baru!</span><br/>
-        Investasi SR023<br/>
-        Cashback <strong>80 Ribu</strong>
-      </div>
-      <button class="coba-btn">COBA</button>
-    </div>
-  </div>
-
-  <!-- Transfer Section -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Transfer</h2>
-    </div>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#00b14f;"><img src="https://img.icons8.com/color/48/money.png"/></div>
-        Kode Tunai
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#0066cc;"><img src="https://img.icons8.com/color/48/payment-card.png"/></div>
-        DANA Kaget
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#008c0c;"><img src="https://img.icons8.com/color/48/document.png"/></div>
-        Bayar Patungan
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/telegram-app.png"/></div>
-        Kirim ke Chat
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#fca311;"><img src="https://img.icons8.com/color/48/bank.png"/></div>
-        Kirim ke Bank
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#ff4f4f;"><img src="https://img.icons8.com/color/48/cash-in-hand.png"/></div>
-        Tarik Tunai
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/group.png"/></div>
-        Kirim ke Grup
-      </div>
-    </div>
-  </div>
-
-  <!-- Bisa ditambah section lain sesuai keperluan -->
-      <!-- Transfer Section -->
-  <div class="section">
-    <div class="section-header">
-      <h2>Transfer</h2>
-    </div>
-    <div class="menu-grid">
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#00b14f;"><img src="https://img.icons8.com/color/48/money.png"/></div>
-        Kode Tunai
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#0066cc;"><img src="https://img.icons8.com/color/48/payment-card.png"/></div>
-        DANA Kaget
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#008c0c;"><img src="https://img.icons8.com/color/48/document.png"/></div>
-        Bayar Patungan
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/telegram-app.png"/></div>
-        Kirim ke Chat
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#fca311;"><img src="https://img.icons8.com/color/48/bank.png"/></div>
-        Kirim ke Bank
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#ff4f4f;"><img src="https://img.icons8.com/color/48/cash-in-hand.png"/></div>
-        Tarik Tunai
-      </div>
-      <div class="menu-item">
-        <div class="menu-icon" style="background:#009933;"><img src="https://img.icons8.com/color/48/group.png"/></div>
-        Kirim ke Grup
-      </div>
-    </div>
-  </div>
-</div>
 <!-- ======= SHEET LISTRIK ======= -->
 <div id="listrikSheet" class="sheet">
   <div class="handle"></div>
@@ -890,7 +802,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- ======= SHEET GAME ======= -->
 <div id="topUpGameSheet" class="sheet">
@@ -1003,6 +914,14 @@
 </div>
 
 
+
+
+
+
+
+
+
+
 <!-- ======= SHEET DAVIGO POINT ======= -->
 <div id="davigoPointSheet" class="sheet">
   <div class="handle"></div>
@@ -1039,7 +958,215 @@
     </div>
   </div>
 </div> 
-<!-- JS dipanggil di akhir BODY -->
+
+<!-- ================== LOADING OVERLAY ================== -->
+<div id="gf-loading" class="fixed inset-0 bg-white z-[9999] hidden flex flex-col items-center justify-start pt-12 px-4 overflow-auto">
+  <!-- Skeleton Container -->
+  <div class="w-full max-w-md space-y-4">
+    <!-- Template Skeleton Item -->
+    <template id="skeleton-template">
+      <div class="flex items-center space-x-4 animate-pulse bg-gray-100 rounded-lg p-3 shadow-xl">
+        <div class="w-12 h-12 bg-gray-300 rounded-full flex-shrink-0 shadow-inner"></div>
+        <div class="flex-1 space-y-2">
+          <div class="h-4 bg-gray-300 rounded w-3/4 shadow-inner"></div>
+          <div class="h-3 bg-gray-300 rounded w-1/2 shadow-inner"></div>
+          <div class="h-6 bg-gray-300 rounded w-1/4 mt-1 shadow-inner"></div>
+        </div>
+      </div>
+    </template>
+    
+    <div id="skeleton-list"></div>
+    
+    <p class="text-red-800 font-bold text-sm mt-4 text-center">Loading menu...</p>
+  </div>
+</div>
+
+
+
+<!-- OVERLAY PEMBAYARAN -->
+<div id="overlaySuma" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+  <div class="bg-white rounded-xl w-80 max-w-full p-5 shadow-lg animate-slideUp">
+    <h3 class="text-lg font-bold mb-4">Pilih Metode Pembayaran</h3>
+    <div class="space-y-2">
+      <button class="pay-btn w-full p-3 rounded-lg border hover:bg-gray-100">QRIS</button>
+      <button class="pay-btn w-full p-3 rounded-lg border hover:bg-gray-100">Virtual Account</button>
+      <button class="pay-btn w-full p-3 rounded-lg border hover:bg-gray-100">E-Wallet</button>
+      <button class="pay-btn w-full p-3 rounded-lg border hover:bg-gray-100">Transfer Bank</button>
+    </div>
+    <button id="close" class="mt-4 w-full bg-gray-200 p-2 rounded-lg">Batal</button>
+  </div>
+</div>
+
+<!-- FULLSCREEN googleplay layout khusus voucher -->
+<div id="gplayModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+  
+<!-- Loading Spinner Google Play Gradient -->  <div id="loadingSpinner" class="flex flex-col items-center">  
+  <div class="w-10 h-10 mb-2 relative">  
+    <div class="absolute inset-0 rounded-full border-4 border-t-red-500 border-r-green-500 border-b-white-500 border-l-blue-500 animate-spin"></div>  
+  </div>  
+  <p class="text-white font-medium text-sm">Loading...</p>  
+</div>  
+
+  <!-- Isi modal (disembunyikan dulu, nanti muncul dengan animasi) -->
+<div id="modalContent" class="absolute inset-0 bg-white rounded-t-2xl shadow-lg p-5 overflow-y-auto hidden">
+
+  <!-- Tombol close -->
+  <button id="closeModal" 
+          class="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-2xl font-bold">✕</button>
+
+  <!-- HEADER -->
+  <div class="flex items-center justify-between mb-4">
+    <div class="flex items-center space-x-2">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" 
+           alt="Google Play" class="h-6">
+      <span class="font-bold text-gray-800">Rewards</span>
+    </div>
+  </div>
+
+  <!-- Selamat datang -->
+  <h2 class="text-lg font-bold text-gray-800 mb-2">Selamat datang di Zona Google Play</h2>
+
+  <!-- ===== Main Page ===== -->
+  <div id="mainPage" class="page active" style="position:relative;">
+    <!-- Voucher & Akun card -->
+    <div class="card">
+      <div class="row">
+        <div>
+          <div style="font-weight:700">Voucher saya</div>
+          <div class="small">Lihat semua voucher saya</div>
+        </div>
+        <button id="openVoucherFull" class="btn-primary">Di sini</button>
+      </div>
+    </div>
+    
+    <!-- Tabs -->
+    <div class="voucher-tabs" id="tabs">
+      <button class="tab" data-category="all">All</button>
+      <button class="tab" data-category="googleplay">Google Play</button>
+      <button class="tab" data-category="entertainment">YouTube</button>
+      <button class="tab" data-category="games">Games</button>
+      <button class="tab" data-category="shopping">Shopping</button>
+      <button class="tab" data-category="food">Food</button>
+      <button class="tab" data-category="travel">Travel</button>
+      <!-- tambahkan lagi jika perlu -->
+    </div>
+
+    <!-- Tab loading -->
+    <div id="tabLoading"><div style="width:20px;height:20px;border:3px solid #cbd5e1;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite"></div><div>Loading kupon...</div></div>
+
+    <!-- Voucher list -->
+    <div id="voucherList">
+      <!-- beberapa contoh voucher -->
+      <div class="coupon-card" data-category="googleplay">
+        <div class="left">
+          <img class="coupon-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="">
+          <div class="coupon-info"><h3>Google Play 200GB Trial</h3><p>Untuk pengguna baru Google One</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+
+      <div class="coupon-card" data-category="googleplay">
+        <div class="left">
+          <img class="coupon-img" src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Google_Play_Arrow_logo.svg" alt="">
+          <div class="coupon-info"><h3>Voucher Rp5.000</h3><p>Min. pembelian Rp35.000</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+
+      <div class="coupon-card" data-category="entertainment">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/youtube-play.png" alt="">
+          <div class="coupon-info"><h3>YouTube Premium</h3><p>Gratis 1 bulan</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      
+            <div class="coupon-card" data-category="entertainment">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/youtube-play.png" alt="">
+          <div class="coupon-info"><h3>YouTube Premium</h3><p>Gratis 1 bulan</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      
+            <div class="coupon-card" data-category="entertainment">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/youtube-play.png" alt="">
+          <div class="coupon-info"><h3>YouTube Premium</h3><p>Gratis 1 bulan</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      
+            <div class="coupon-card" data-category="entertainment">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/youtube-play.png" alt="">
+          <div class="coupon-info"><h3>YouTube Premium</h3><p>Gratis 1 bulan</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      
+            <div class="coupon-card" data-category="entertainment">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/youtube-play.png" alt="">
+          <div class="coupon-info"><h3>YouTube Premium</h3><p>Gratis 1 bulan</p></div>
+        </div>
+        
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      <div class="coupon-card" data-category="games">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/controller.png" alt="">
+          <div class="coupon-info"><h3>Game Credits</h3><p>Voucher khusus game</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      
+      <div class="coupon-card" data-category="games">
+        <div class="left">
+          <img class="coupon-img" src="https://img.icons8.com/color/48/controller.png" alt="">
+          <div class="coupon-info"><h3>Bonus Item</h3><p>Skin eksklusif gratis</p></div>
+        </div>
+        <button class="claim-btn">KLAIM</button>
+      </div>
+      <!--tambahin voucher di sini-->
+    </div>
+  </div>
+
+  <!-- ===== Fullscreen Voucher Page ===== -->
+  <div id="voucherPage" class="page" aria-hidden="true">
+    <div class="topbar">
+      <button id="backBtn" class="back-btn">� Kembali</button>
+      <div style="font-weight:700" id="voucherPageTitle">Voucher</div>
+    </div>
+    
+  <!-- ===== Halaman Voucher (Full Screen) ===== -->
+  <div id="voucherdi">
+    <div class="voucher-header">
+      <h2>Reward Saya</h2>
+      <p style="font-size:12px">Cek vouchermu disini!</p>
+    </div>
+    
+  <!-- Banner promo -->
+  <div class="w-full h-28 rounded-lg overflow-hidden mb-4">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Google_Play_2022_logo.svg" 
+         class="w-full h-full object-cover" alt="Promo Banner">
+  </div>
+    <!-- Tabs -->
+    <div class="voucher-tabs">
+      <button class="active" onclick="switchTab('voucher', this)">Voucher</button>
+      <button onclick="switchTab('kartu', this)">Kartu</button>
+      <button onclick="switchTab('langganan', this)">Langganan</button>
+    </div>
+
+    <!-- tempat isi voucher full screen (diisi lewat JS saat buka)
+    -->
+    <div id="voucherPageContent"></div>
+  </div>
+  
+
+
+
+  <!-- JS dipanggil di akhir BODY -->
   <script src="script.js"></script>
-</body>
+</body> 
 </html>
