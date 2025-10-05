@@ -1,113 +1,121 @@
+
+
+/* Simple Professional Styles */
+        .sticky-saldo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            backdrop-filter: blur(15px);
+            background: linear-gradient(to right, rgba(29, 78, 216, 0.95), rgba(37, 99, 235, 0.95));
+            padding: 12px 16px;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .sticky-saldo.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .sticky-content {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Smooth transitions */
+        .smooth-transition {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Hover effects untuk menu */
+        .menu-item:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Loading animation */
+        .refresh-spin {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Balance number formatting */
+        .balance-number {
+            font-variant-numeric: tabular-nums;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Professional loading spinner */
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+
+
 /* Button  bar menu*/ .bottom-nav {  position: fixed; bottom: 0; left: 50%;transform:translateX(-50%); width: 100%; max-width: 414px; background: #fff; border-top: 1px solid #e5e7eb;  z-index: 40;padding: 1px 0 33px;transition: transform 0.35s ease; }.bottom-nav .row {display: flex;justify-content: space-around;align-items: center;position: relative;}
 .bottom-nav button {flex: 1;background: none;border: none;display: flex;flex-direction: column;align-items: center;font-size: 12px;color: #6b7280;cursor: pointer;padding: 6px 0;transition: color 0.3s;}.bottom-nav button.active {color: #2563eb;font-weight: 600;}.bottom-nav button svg {width: 22px;height: 22px;
 margin-bottom: 2px;}    
-    /* Enhanced Pay/QRIS Button */
-    #tabPay {position: relative;margin-top: -48px;background: linear-gradient(135deg, #FFFFFF, #FFFFFF);color: #fff;
-      border-radius: 50%;padding: 22px;width: 72px; height: 72px;
-     box-shadow:   0 10px 30px rgba(37, 99, 235, 0.45),
-      0 0 0 4px rgba(255, 255, 255, 0.85);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      z-index: 3;}
-    #tabPay::before {content: '';position: absolute; top: 50%;
-      left: 50%;transform: translate(-50%, -50%); width: 82px;
-      height: 82px;border-radius: 50%;background: linear-gradient(135deg, #3b82f6, #60a5fa);opacity: 0.5;z-index: -1;
-      animation: pulse 2s ease-in-out infinite;}
 
-    #tabPay::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #60a5fa, #93c5fd);
-      opacity: 0.3;
-      z-index: -2;
-      animation: pulse 3s ease-in-out infinite 1s;
-    }
+.bottom-nav button {
+  background: none;
+  border: none;
+  outline: none;
+  color: #666;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-    @keyframes pulse {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.5;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.3;
-      }
-    }
+/* Icon umum */
+.bottom-nav .icon {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 4px;
+}
 
-    #tabPay:hover {
-      transform: translateY(-10px) scale(1.06);
-      box-shadow: 
-        0 18px 40px rgba(37, 99, 235, 0.65),
-        0 0 0 4px rgba(255, 255, 255, 0.9);
-    }
+/* Icon khusus PAY lebih besar */
+.bottom-nav .icon-pay {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 4px;
+}
 
-    #tabPay svg {
-      height: 28px;
-      width: 28px;
-      stroke: #fff;
-      stroke-width: 2;
-      margin: 0;
-    }
-
-    #tabPay span {
-      display: none;
-    }
-
-    /* Blue moving shadow effect */
-    .blue-shadow {
-      position: absolute;
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 85px;
-      height: 22px;
-      background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa, #2563eb);
-      border-radius: 50%;
-      filter: blur(18px);
-      opacity: 0.8;
-      animation: moveShadow 2.5s ease-in-out infinite;
-      z-index: 1;
-    }
-
-    @keyframes moveShadow {
-      0%, 100% {
-        transform: translateX(-50%) scale(0.85);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translateX(-50%) scale(1.25);
-        opacity: 0.9;
-      }
-    }
-
-
-
-    /* Enhanced ripple effect for buttons */
-    .ripple-effect {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(37, 99, 235, 0.25);
-      transform: scale(0);
-      animation: ripple 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-    }
-    
-    @keyframes ripple {
-      to {
-        transform: scale(2.5);
-        opacity: 0;
-      }
-    }
-    
-    /* Pay button specific ripple */
-    #tabPay .ripple-effect {
-      background: rgba(255, 255, 255, 0.35);
-    }
+/* Style khusus tombol PAY */
+#tabPay {
+  background: #2196f3;
+  color: #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
 
 /*style riwayat saldo Container ringkasan agar sedikit kecil*/
 #txnSummary {background: #f0f9ff;border-radius: 12px;margin: 12px 16px;padding: 12px 16px;box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);font-weight: 600;font-size: 14px;color: #1f2937;}.date-header {background: #fff;font-weight: 600;font-size: 13px;padding: 6px 16px;border-bottom: 1pxsolid #e5e7eb;position: sticky;top: 0;z-index: 10;color: #374151;}.txn-item {background: #fff;padding: 10px 16px;display: flex;align-items: center;justify-content: space-between;border-bottom: 1px solid #f3f4f6;cursor: pointer;transition: background-color 0.15s ease;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}.txn-item:hover {background-color: #f9fafb;}
@@ -290,6 +298,542 @@ body.dark-mode .theme-toggle-btn:hover {
     left: 1px;
     text-shadow: -1px 0 rgba(255, 0, 0, 0.3);
     animation: glitchAnimBefore 3s infinite;
+  }
+
+  .glitch::after {
+    left: -1px;
+    text-shadow: -1px 0 rgba(0, 255, 255, 0.3);
+    animation: glitchAnimAfter 3s infinite;
+  }
+
+  @keyframes glitchAnim {
+    0% {
+      transform: translate(0);
+    }
+    20% {
+      transform: translate(-1px, 1px);
+    }
+    40% {
+      transform: translate(-1px, -1px);
+    }
+    60% {
+      transform: translate(1px, 1px);
+    }
+    80% {
+      transform: translate(1px, -1px);
+    }
+    100% {
+      transform: translate(0);
+    }
+  }
+
+  @keyframes glitchAnimBefore {
+    0%, 100% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+    10%, 30% {
+      clip: rect(0, 9999px, 100%, 0);
+      transform: translate(-1px, -1px);
+    }
+    20%, 40% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+  }
+
+  @keyframes glitchAnimAfter {
+    0%, 100% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+    15%, 35% {
+      clip: rect(0, 9999px, 100%, 0);
+      transform: translate(1px, 1px);
+    }
+    25%, 45% {
+      clip: rect(0, 9999px, 0, 0);
+      transform: translate(0);
+    }
+  }
+
+  /* Notif card style (chat) */
+  .notif-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    user-select: none;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .notif-left {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+
+  .notif-icon {
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .notif-icon img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .notif-text {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .notif-time {
+    font-size: 0.8em;
+    opacity: 0.7;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Chat 1 kecil dan rapat ke notif kecil */
+  #notifCard1 {
+    font-size: 0.85em;
+    height: 44px;
+    margin-top: 2px;    /* rapat ke notif kecil */
+    margin-bottom: 2px;
+    padding: 6px 10px;
+  }
+
+  #notifCard1 .notif-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+  }
+
+  #notifCard1 .notif-time {
+    font-size: 0.75em;
+    margin-left: 8px;
+  }
+
+  /* Chat 2 sudah kecil dan rapat */
+  #notifCard2 {
+    font-size: 0.75em;
+    height: 40px;
+    margin-bottom: 0;
+    padding: 6px 10px;
+  }
+
+  #notifCard2 .notif-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+  }
+
+  #notifCard2 .notif-time {
+    font-size: 0.7em;
+    margin-left: 6px;
+  }
+
+  /* Animasi slide up keluar */
+  .slide-up-out {
+    animation: slideUpOut 0.5s forwards;
+  }
+
+  /* Animasi slide up masuk */
+  .slide-up-in {
+    animation: slideUpIn 0.5s forwards;
+  }
+
+  @keyframes slideUpOut {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  @keyframes slideUpIn {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+    
+    
+/* === DARK MODE FIX NOTIF === */
+body.dark-mode .notif-group {
+  background: #1e1e1e;
+  border: 1px solid #333;
+}
+body.dark-mode .notif-small {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border-bottom: 1px solid #333;
+}
+body.dark-mode .notif-small strong {
+  color: #00aaff;
+}
+body.dark-mode .notif-card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+  border-bottom: 1px solid #333;
+}
+body.dark-mode .notif-card:last-child {
+  border-bottom: none;
+}
+body.dark-mode .notif-text strong {
+  color: #fff;
+}
+body.dark-mode .notif-time {
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .notif-card {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+  .notif-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .notif-time {
+    font-size: 11px;
+  }
+  .notif-small {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+
+
+/* Container luar (pembungkus semua notif) */
+.notif-group {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden; /* biar sudut radius kepotong rapi */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 16px;
+}
+
+/* Container luar */
+.notif-group {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #eee;
+  margin: 8px 0;
+}
+
+/* Baris notif */
+.notif-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-card:last-child {
+  border-bottom: none;
+}
+
+/* Kiri: ikon + teks */
+.notif-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;        /* rapat */
+  flex: 1;
+}
+
+/* Ikon foto bundar */
+.notif-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.notif-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Teks notif */
+.notif-text {
+  line-height: 1.3;
+  color: #333;
+  font-size: 13px;
+}
+.notif-text strong {
+  font-weight: 600;
+  color: #111;
+}
+
+/* Waktu di kanan */
+.notif-time {
+  color: #999;
+  font-size: 11px;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .notif-card {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+  .notif-icon {
+    width: 24px;
+    height: 24px;
+  }
+  .notif-text {
+    font-size: 12px;
+  }
+  .notif-time {
+    font-size: 10px;
+  }
+}
+  
+  
+
+
+/* Icon gambar */
+.menu-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+/* Banner promo (Terakhir Dibuka) */
+.promo-banner {
+  background: #2a7de1;
+  border-radius: 12px;
+  color: #fff;
+  padding: 12px 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+/* Promo text */
+.promo-content {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Button coba */
+.coba-btn {
+  border: 1.5px solid #2a7de1;
+  background: transparent;
+  color: #2a7de1;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* Container kecil ikon sebelah kanan (filter pilihan) */
+.filter-icons {
+  background: #f2f4f8;
+  border-radius: 18px;
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  align-items: center;
+  font-size: 11px;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+
+
+/* === DARK MODE === */
+body.dark-mode {
+  background-color: #121212;   /* abu gelap, bukan hitam pekat */
+  color: #f5f5f5;
+}
+
+/* Header saldo pakai gradasi biru biar tetap hidup */
+body.dark-mode .header-saldo {
+  background: linear-gradient(135deg, #0d47a1, #1565c0);
+  color: #fff;
+}
+
+/* Card / menu utama */
+body.dark-mode .section,
+body.dark-mode .saldo-card,
+body.dark-mode .feature-card,
+body.dark-mode .notif-card {
+  background-color: #1e1e1e;   /* lebih terang dari background */
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  color: #f5f5f5;
+}
+
+/* Ikon bundar dalam menu */
+body.dark-mode .menu-icon {
+  background: #2a2a2a !important;
+  border: 1px solid #3a3a3a;
+  box-shadow: none;
+}
+
+/* Teks sekunder jangan putih semua */
+body.dark-mode .theme-sub,
+body.dark-mode .notif-time,
+body.dark-mode .note {
+  color: #aaa !important;
+}
+
+/* Judul & teks penting */
+body.dark-mode .theme-title,
+body.dark-mode .notif-text strong,
+body.dark-mode .saldo-row .amount {
+  color: #fff !important;
+}
+
+/* Efek hover biar ada dimensi */
+body.dark-mode .feature-card:hover,
+body.dark-mode .notif-card:hover {
+  background-color: #222;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+/* Tombol toggle mode */
+body.dark-mode .theme-toggle-btn {
+  background: #444;
+  color: #fff;
+}
+
+body.dark-mode .theme-toggle-btn:hover {
+  background: #666;
+}
+
+
+/* === DARK MODE FIX NOTIF === */
+body.dark-mode .notif-small {
+  background: #1e1e1e;   /* abu gelap */
+  color: #f5f5f5;        /* teks putih */
+  border: 1px solid #333;
+}
+
+body.dark-mode .notif-small strong {
+  color: #00aaff; /* biru terang biar kontras */
+}
+
+body.dark-mode .notif-card {
+  background: #1e1e1e;   /* card gelap */
+  color: #f5f5f5;
+  border: 1px solid #333;
+}
+
+body.dark-mode .notif-text strong {
+  color: #ffffff;  /* biar lebih jelas */
+}
+
+body.dark-mode .notif-time {
+  color: #aaa; /* abu muda biar beda */
+}
+
+/*.promo-slider*/
+    h2 {
+      text-align: center;
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    /* Wrapper */
+    .promo-slider {
+      position: relative;
+      width: 100%;
+      max-width: 570px;
+      height: 100px; /* lebih kecil */
+      margin: auto;   display: flex;
+      justify-content: center;  align-items: center; overflow: hidden;}
+    .slider-container {   position: relative;   width: 100%;
+      height: 100%;
+    }
+    .slide {position: absolute; top: 0;  left: 50%;   width: 70%;
+      height: 100%;  border-radius: 19px;  overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.6s ease, opacity 0.6s ease,
+      box-shadow 0.6s ease;}
+    .slide img {width: 100%; height: 100%;object-fit: 
+    cover;display: block;}
+    
+    
+    
+/* ========= Startup Verify Modal - Professional E-Wallet Style ========= */
+#startupVerify { 
+  position: fixed; 
+  inset: 0; 
+  background: linear-gradient(135deg, #667eea 0%, #404C9C 100%);
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+
+/* Background floating orbs */
+#startupVerify::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+  filter: blur(40px);
+}
+
+#startupVerify::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  right: 20%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: float 4s ease-in-out infinite reverse;
+  filter: blur(30px);
+}
+
+#startupVerify .box { 
+  width: 90%; 
+  max-width: 400px; 
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+itchAnimBefore 3s infinite;
   }
 
   .glitch::after {
