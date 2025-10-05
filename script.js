@@ -98,170 +98,395 @@ document.addEventListener("DOMContentLoaded", () => {
       startAutoSlide();
     });
 
-    /* ========= Login / PIN ========= */
-    const verifyWrap = document.getElementById('startupVerify');
-    const stepPhone  = document.getElementById('verifyStepPhone');
-    const stepOTP    = document.getElementById('verifyStepOTP');
-    const stepSetPIN = document.getElementById('verifyStepSetPIN');
-    const stepPIN    = document.getElementById('verifyStepPIN');
-    const MOCK_OTP = '123456';
-
-    function showStep(el){ [stepPhone, stepOTP, stepSetPIN, stepPIN].forEach(x=>x.classList.add('hidden')); el.classList.remove('hidden'); }
-
-    document.getElementById('havePinBtn').addEventListener('click', ()=>{
-      const saved = storage.get(PIN_KEY,null);
-      if(saved){ showStep(stepPIN); }
-      else { alert('Belum ada PIN tersimpan. Silakan buat PIN baru.'); }
-    });
-
-    function startupSendOTP(){
-      const phone = document.getElementById('startupPhone').value.trim();
-      if(!/^0[0-9]{9,13}$/.test(phone)){ alert('Nomor HP tidak valid'); return; }
-      alert('OTP dikirim ke '+phone+' (demo gunakan '+MOCK_OTP+')');
-      showStep(stepOTP);
-    }
-    function startupResendOTP(){ alert('OTP baru terkirim (demo: '+MOCK_OTP+')'); }
-    function startupVerifyOTP(){
-      const otp = document.getElementById('startupOTP').value.trim();
-      if(otp===MOCK_OTP){ showStep(stepSetPIN); }
-      else alert('OTP salah');
-    }
-    function startupSavePIN(){
-      const p1 = document.getElementById('startupSetPIN1').value.trim();
-      const p2 = document.getElementById('startupSetPIN2').value.trim();
-      if(!/^[0-9]{6}$/.test(p1)){ alert('PIN harus 6 digit'); return; }
-      if(p1!==p2){ alert('PIN tidak sama'); return; }
-      storage.set(PIN_KEY, p1);
-      storage.set(LOGIN_KEY, true);
-      verifyWrap.style.display = 'none';
-      initAfterLogin();
-    }
-    function startupVerifyPIN(){
-      const pin = document.getElementById('startupPIN').value.trim();
-      const saved = storage.get(PIN_KEY,null);
-      if(saved && pin===saved){
-        storage.set(LOGIN_KEY,true);
-        verifyWrap.style.display='none';
-        initAfterLogin();
-      }else alert('PIN salah');
-    }
-    window.startupSendOTP = startupSendOTP;
-    window.startupResendOTP = startupResendOTP;
-    window.startupVerifyOTP = startupVerifyOTP;
-    window.startupSavePIN = startupSavePIN;
-    window.startupVerifyPIN = startupVerifyPIN;
-
-    // lock scroll while verify
-    (function(){
-      const main = document.getElementById('mainScroll');
-      const obs = new MutationObserver(()=>{ if(verifyWrap.style.display==='none') main.style.overflow='auto'; else main.style.overflow='hidden'; });
-      obs.observe(verifyWrap,{attributes:true, attributeFilter:['style']});
-      if(verifyWrap.style.display!=='none') main.style.overflow='hidden';
-    })();
-
-    function logout(){
-      storage.set(LOGIN_KEY,false); // sesi berakhir, PIN tetap
-      verifyWrap.style.display='flex';
-      showStep(stepPIN);
-    }
-
-    // Balance init
-    function initBalance(){
-      let b = storage.get(BAL_KEY, null);
-      if(b===null){ b = 1487500; storage.set(BAL_KEY,b); }
-      document.getElementById('balance').innerText = b.toLocaleString('id-ID');
-    }
-
-    function initAfterLogin(){
-      initBalance();
-      renderHistory(); // refresh aktivitas
-    }
-
-    // boot
-    (function boot(){
-      if(storage.get(LOGIN_KEY,false)){ verifyWrap.style.display='none'; initAfterLogin(); }
-      else { verifyWrap.style.display='flex'; const hasPin = storage.get(PIN_KEY,null); showStep(hasPin?stepPIN:stepPhone); }
-    })();
-
-    /* ========= Bottom Nav Tabs ========= */
-    const sections = {
-      tabHome: 'homeSection',
-      tabAktivitas: 'activitySection',
-      tabPay: 'paySection',
-      tabWallet: 'walletSection'
+/* ========= Professional Toast & Modal System ========= */
+/* ========= Professional Toast & Modal System - FINAL VERSION ========= */
+class NotificationSystem {
+  static show(message, type = 'info', duration = 3000) {
+    const toast = document.createElement('div');
+    
+    // Professional SVG Icons
+    const icons = {
+      success: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+      </svg>`,
+      error: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+      </svg>`,
+      warning: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+      </svg>`,
+      info: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+      </svg>`,
+      loading: `<svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>`,
+      security: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+      </svg>`,
+      money: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"></path>
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"></path>
+      </svg>`,
+      phone: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+      </svg>`,
+      otp: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z" clip-rule="evenodd"></path>
+      </svg>`,
+      pin: `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+      </svg>`
     };
-    Object.keys(sections).forEach(tabId=>{
-      const btn = document.getElementById(tabId);
-      btn.addEventListener('click', ()=>{
-        // protect: require login
-        if(verifyWrap.style.display !== 'none'){ alert('Silakan verifikasi terlebih dahulu.'); return; }
-        // toggle active
-        qsa('.bottom-nav button').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-        // show section
-        Object.values(sections).forEach(id=> qs('#'+id).classList.add('hidden'));
-        qs('#'+sections[tabId]).classList.remove('hidden');
-      });
+    
+    // Toast styling berdasarkan type
+    const styles = {
+      success: 'bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-emerald-500/25',
+      error: 'bg-gradient-to-r from-red-500 to-rose-600 text-white shadow-red-500/25',
+      warning: 'bg-gradient-to-r from-amber-500 to-orange-600 text-white shadow-amber-500/25',
+      info: 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-blue-500/25',
+      loading: 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-violet-500/25',
+      security: 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-red-600/30',
+      money: 'bg-gradient-to-r from-green-600 to-emerald-700 text-white shadow-green-600/25',
+      phone: 'bg-gradient-to-r from-blue-600 to-cyan-700 text-white shadow-blue-600/25',
+      otp: 'bg-gradient-to-r from-indigo-600 to-purple-700 text-white shadow-indigo-600/25',
+      pin: 'bg-gradient-to-r from-gray-600 to-slate-700 text-white shadow-gray-600/25'
+    };
+    
+    toast.className = `fixed top-4 right-4 z-[9999] px-5 py-4 rounded-2xl shadow-2xl transform translate-x-full transition-all duration-500 ease-out max-w-sm backdrop-blur-sm border border-white/10 ${styles[type] || styles.info}`;
+    
+    toast.innerHTML = `
+      <div class="flex items-center space-x-3">
+        <div class="flex-shrink-0 ${type === 'loading' ? '' : 'animate-pulse'}">
+          ${icons[type] || icons.info}
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-semibold text-sm leading-relaxed">${message}</p>
+        </div>
+        ${type !== 'loading' ? `
+          <button onclick="this.parentElement.parentElement.style.transform='translateX(100%)'; setTimeout(() => this.parentElement.parentElement.remove(), 300)" class="flex-shrink-0 ml-2 opacity-70 hover:opacity-100 transition-opacity">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        ` : ''}
+      </div>
+    `;
+    
+    // Add to DOM
+    document.body.appendChild(toast);
+    
+    // Show animation dengan bounce effect
+    requestAnimationFrame(() => {
+      toast.style.transform = 'translateX(0) scale(1.02)';
+      setTimeout(() => {
+        toast.style.transform = 'translateX(0) scale(1)';
+      }, 150);
     });
     
-    // ===== Buat modal logout lewat JS =====
-const modalHTML = `
-<div id="logoutModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden z-50">
-  <div class="bg-white rounded-xl shadow-lg w-80 p-6 text-center">
-    <h2 class="text-xl font-semibold mb-4">Konfirmasi Logout</h2>
-    <p class="mb-6 text-gray-600">Apakah kamu yakin ingin logout sekarang?</p>
-    <div class="flex justify-center space-x-4">
-      <button id="cancelLogout" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition">Batal</button>
-      <button id="confirmLogout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">Logout</button>
-    </div>
-  </div>
-</div>
-`;
-
-// Sisipkan modal ke body
-document.body.insertAdjacentHTML('beforeend', modalHTML);
-
-// Ambil elemen
-const tabLogout = document.getElementById('tabLogout');
-const logoutModal = document.getElementById('logoutModal');
-const cancelLogout = document.getElementById('cancelLogout');
-const confirmLogout = document.getElementById('confirmLogout');
-
-// Event buka modal
-tabLogout.addEventListener('click', () => {
-  logoutModal.classList.remove('hidden');
-});
-
-// Event batal
-cancelLogout.addEventListener('click', () => {
-  logoutModal.classList.add('hidden');
-});
-
-// Event konfirmasi logout
-confirmLogout.addEventListener('click', () => {
-  logout(); // panggil fungsi logout asli
-  logoutModal.classList.add('hidden');
-});
-
-// Klik di luar modal untuk tutup
-logoutModal.addEventListener('click', (e) => {
-  if(e.target === logoutModal) logoutModal.classList.add('hidden');
-});
-
-    /* ========= Proteksi klik fitur sebelum login ========= */
-    const protectIds = ["topUpBtn","withdrawBtn","pulsaDataBtn","listrikBtn","googlePlayBtn","topUpGameBtn","dagetBtn","dataPlusBtn","sendMoneyBtn","qrPayBtn","danaPolyBtn","rewardBtn","danaDealsBtn"];
-    protectIds.forEach(id=>{
-      const el = document.getElementById(id);
-      if(!el) return;
-      el.addEventListener('click', (e)=>{
-        if(verifyWrap.style.display !== 'none'){ e.preventDefault(); alert('Silakan verifikasi terlebih dahulu.'); }
-      });
+    // Auto remove untuk non-loading toasts
+    if (type !== 'loading') {
+      setTimeout(() => {
+        if (toast.parentElement) {
+          toast.style.transform = 'translateX(100%) scale(0.95)';
+          setTimeout(() => toast.remove(), 500);
+        }
+      }, duration);
+    }
+    
+    return toast;
+  }
+  
+  // Specialized notification methods
+  static showSuccess(message, duration = 3000) {
+    return this.show(message, 'success', duration);
+  }
+  
+  static showError(message, duration = 4000) {
+    return this.show(message, 'error', duration);
+  }
+  
+  static showWarning(message, duration = 3500) {
+    return this.show(message, 'warning', duration);
+  }
+  
+  static showInfo(message, duration = 3000) {
+    return this.show(message, 'info', duration);
+  }
+  
+  static showLoading(message) {
+    return this.show(message, 'loading', 0);
+  }
+  
+  static showSecurity(message, duration = 5000) {
+    return this.show(message, 'security', duration);
+  }
+  
+  static showMoney(message, duration = 4000) {
+    return this.show(message, 'money', duration);
+  }
+  
+  static showPhone(message, duration = 3000) {
+    return this.show(message, 'phone', duration);
+  }
+  
+  static showOTP(message, duration = 5000) {
+    return this.show(message, 'otp', duration);
+  }
+  
+  static showPIN(message, duration = 3000) {
+    return this.show(message, 'pin', duration);
+  }
+  
+  static hideLoading(toast) {
+    if (toast && toast.parentElement) {
+      toast.style.transform = 'translateX(100%) scale(0.95)';
+      setTimeout(() => toast.remove(), 500);
+    }
+  }
+  
+  // Clear all notifications
+  static clearAll() {
+    document.querySelectorAll('[class*="fixed top-4 right-4"]').forEach(toast => {
+      toast.style.transform = 'translateX(100%) scale(0.95)';
+      setTimeout(() => toast.remove(), 300);
     });
+  }
+}
 
-    /* ========= SHEET Controls ========= */
-const pulsaSheet    = document.getElementById('pulsaSheet');
-const listrikSheet    = document.getElementById('listrikSheet');
-const topUpGameSheet  = document.getElementById('topUpGameSheet');
-const davigoGameSheet = document.getElementById('davigoGameSheet'); // NEW
+/* ========= Professional Login / PIN System - UPDATED WITH BETTER NOTIFICATIONS ========= */
+const verifyWrap = document.getElementById('startupVerify');
+const stepPhone  = document.getElementById('verifyStepPhone');
+const stepOTP    = document.getElementById('verifyStepOTP');
+const stepSetPIN = document.getElementById('verifyStepSetPIN');
+const stepPIN    = document.getElementById('verifyStepPIN');
+const MOCK_OTP = '123456';
+
+let currentStep = null;
+let isTransitioning = false;
+
+// Enhanced step transition with animations - FIXED VERSION
+function showStep(el, direction = 'forward') {
+  if (isTransitioning) return;
+  if (!el) return;
+  
+  isTransitioning = true;
+  
+  const steps = [stepPhone, stepOTP, stepSetPIN, stepPIN];
+  
+  // Exit animation for current step
+  if (currentStep && currentStep !== el) {
+    currentStep.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    currentStep.style.transform = direction === 'forward' ? 'translateX(-100%)' : 'translateX(100%)';
+    currentStep.style.opacity = '0';
+    
+    setTimeout(() => {
+      currentStep.classList.add('hidden');
+      currentStep.style.transform = '';
+      currentStep.style.opacity = '';
+      currentStep.style.transition = '';
+    }, 300);
+  }
+  
+  // Entry animation for new step
+  setTimeout(() => {
+    steps.forEach(x => x.classList.add('hidden'));
+    el.classList.remove('hidden');
+    
+    el.style.transform = '';
+    el.style.opacity = '';
+    el.style.transition = '';
+    
+    if (currentStep && currentStep !== el) {
+      el.style.transform = direction === 'forward' ? 'translateX(100%)' : 'translateX(-100%)';
+      el.style.opacity = '0';
+      
+      requestAnimationFrame(() => {
+        el.style.transition = 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        el.style.transform = 'translateX(0)';
+        el.style.opacity = '1';
+        
+        setTimeout(() => {
+          el.style.transition = '';
+          el.style.transform = '';
+          el.style.opacity = '';
+          currentStep = el;
+          isTransitioning = false;
+        }, 400);
+      });
+    } else {
+      currentStep = el;
+      isTransitioning = false;
+    }
+  }, currentStep && currentStep !== el ? 150 : 0);
+}
+
+// Enhanced PIN button click handler
+document.getElementById('havePinBtn').addEventListener('click', async ()=>{
+  const btn = document.getElementById('havePinBtn');
+  const originalText = btn.innerHTML;
+  
+  btn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    Memeriksa...
+  `;
+  btn.disabled = true;
+  
+  await new Promise(resolve => setTimeout(resolve, 800));
+  
+  const saved = storage.get(PIN_KEY,null);
+  if(saved){ 
+    showStep(stepPIN);
+    NotificationSystem.showPIN('PIN ditemukan! Silakan masukkan PIN Anda.');
+  } else { 
+    NotificationSystem.showWarning('Belum ada PIN tersimpan. Silakan buat PIN baru.');
+  }
+  
+  btn.innerHTML = originalText;
+  btn.disabled = false;
+});
+
+// Enhanced OTP functions with professional feedback
+async function startupSendOTP(){
+  const phoneInput = document.getElementById('startupPhone');
+  const phone = phoneInput.value.trim();
+  const btn = event.target;
+  
+  phoneInput.classList.remove('border-red-500', 'border-green-500');
+  
+  if(!/^0[0-9]{9,13}$/.test(phone)){ 
+    phoneInput.classList.add('border-red-500');
+    phoneInput.focus();
+    NotificationSystem.showError('Nomor HP tidak valid. Gunakan format 08xxxxxxxxxx');
+    return; 
+  }
+  
+  phoneInput.classList.add('border-green-500');
+  
+  const originalText = btn.innerHTML;
+  btn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    Mengirim OTP...
+  `;
+  btn.disabled = true;
+  
+  await new Promise(resolve => setTimeout(resolve, 2000));
+  
+  NotificationSystem.showPhone(`OTP berhasil dikirim ke ${phone.replace(/(\d{4})(\d{4})(\d+)/, '$1-$2-$3')}`);
+  setTimeout(() => {
+    NotificationSystem.showOTP(`Demo: Gunakan kode ${MOCK_OTP}`);
+  }, 1000);
+  
+  showStep(stepOTP);
+  
+  btn.innerHTML = originalText;
+  btn.disabled = false;
+}
+
+async function startupResendOTP(){ 
+  const btn = event.target;
+  const originalText = btn.innerHTML;
+  
+  btn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-blue-600 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    Mengirim ulang...
+  `;
+  btn.disabled = true;
+  
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  
+  NotificationSystem.showSuccess('OTP baru telah dikirim!');
+  setTimeout(() => {
+    NotificationSystem.showOTP(`Demo: Gunakan kode ${MOCK_OTP}`);
+  }, 1000);
+  
+  btn.innerHTML = originalText;
+  btn.disabled = false;
+}
+
+async function startupVerifyOTP(){
+  const otpInput = document.getElementById('startupOTP');
+  const otp = otpInput.value.trim();
+  const btn = event.target;
+  
+  otpInput.classList.remove('border-red-500', 'border-green-500');
+  
+  if (!otp) {
+    otpInput.classList.add('border-red-500');
+    otpInput.focus();
+    NotificationSystem.showWarning('Silakan masukkan kode OTP');
+    return;
+  }
+  
+  const originalText = btn.innerHTML;
+  btn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    Memverifikasi...
+  `;
+  btn.disabled = true;
+  
+  await new Promise(resolve => setTimeout(resolve, 1500));
+  
+  if(otp === MOCK_OTP){ 
+    otpInput.classList.add('border-green-500');
+    NotificationSystem.showSuccess('OTP berhasil diverifikasi!');
+    setTimeout(() => showStep(stepSetPIN), 800);
+  } else {
+    otpInput.classList.add('border-red-500');
+    otpInput.focus();
+    otpInput.select();
+    NotificationSystem.showError('Kode OTP salah. Silakan coba lagi.');
+  }
+  
+  btn.innerHTML = originalText;
+  btn.disabled = false;
+}
+
+async function startupSavePIN(){
+  const p1Input = document.getElementById('startupSetPIN1');
+  const p2Input = document.getElementById('startupSetPIN2');
+  const p1 = p1Input.value.trim();
+  const p2 = p2Input.value.trim();
+  const btn = event.target;
+  
+  [p1Input, p2Input].forEach(input => {
+    input.classList.remove('border-red-500', 'border-green-500');
+  });
+  
+  if(!/^[0-9]{6}$/.test(p1)){ 
+    p1Input.classList.add('border-red-500');
+    p1Input.focus();
+    NotificationSystem.showError('PIN harus terdiri dari 6 digit angka');
+    return; 
+  }
+  
+  if(p1 !== p2){ 
+    p2Input.classList.add('border-red-500');
+    p2Input.focus();
+    p2Input.select();
+    NotificationSystem.showError('Konfirmasi PIN tidak sesuai');
+    return; 
+  }
+  
+  [p1Input, p2Input].forEach(input => input.classList.add('border-green-500'));
+  
+  const originalText = btn.innerHTML;
+  btn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="cuyId('davigoGameSheet'); // NEW
 
 document.getElementById('pulsaDataBtn').addEventListener('click', ()=> openSheet(pulsaSheet));
 document.getElementById('listrikBtn').addEventListener('click', ()=> openSheet(listrikSheet));
@@ -2715,3 +2940,126 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', eve
         document.documentElement.classList.remove('dark');
     }
 });
+
+// Simple Professional App Controller
+let isStickySaldoVisible = false;
+let saldoIsHidden = false;
+let isRefreshing = false;
+
+// Sticky saldo effect saat scroll
+window.addEventListener('scroll', function() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const stickySaldo = document.getElementById('stickySaldo');
+  const threshold = 200;
+  
+  if (scrollTop > threshold && !isStickySaldoVisible) {
+    stickySaldo.classList.add('show');
+    isStickySaldoVisible = true;
+    syncSaldoValues();
+  } else if (scrollTop <= threshold && isStickySaldoVisible) {
+    stickySaldo.classList.remove('show');
+    isStickySaldoVisible = false;
+  }
+}, { passive: true });
+
+// Sync nilai saldo antara card utama dan sticky
+function syncSaldoValues() {
+  const balance = document.getElementById('balance');
+  const stickyBalance = document.getElementById('stickyBalance');
+  const poin = document.getElementById('poin');
+  const stickyPoin = document.getElementById('stickyPoin');
+  
+  stickyBalance.textContent = balance.textContent;
+  stickyPoin.textContent = poin.textContent;
+}
+
+// Toggle saldo visibility
+function toggleSaldoVisibility(isMainCard = true) {
+  const balance = document.getElementById(isMainCard ? 'balance' : 'stickyBalance');
+  const stickyBalance = document.getElementById(isMainCard ? 'stickyBalance' : 'balance');
+  const eyeIcon = document.getElementById(isMainCard ? 'eyeIcon' : 'stickyEyeIcon');
+  const stickyEyeIcon = document.getElementById(isMainCard ? 'stickyEyeIcon' : 'eyeIcon');
+  
+  if (balance.textContent.includes('.') || balance.textContent === '1.487.500') {
+    // Hide saldo
+    balance.textContent = '••••••••';
+    stickyBalance.textContent = '••••••••';
+    saldoIsHidden = true;
+    
+    const hiddenIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L7.05 7.05M9.878 9.878a3 3 0 105.303 5.303m0 0l2.828 2.829M15.182 15.182L17.01 17.01" />`;
+    
+    eyeIcon.innerHTML = hiddenIcon;
+    stickyEyeIcon.innerHTML = hiddenIcon;
+  } else {
+    // Show saldo
+    balance.textContent = '1.487.500';
+    stickyBalance.textContent = '1.487.500';
+    saldoIsHidden = false;
+    
+    const visibleIcon = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 
+                         8.268 2.943 9.542 7-1.274 
+                         4.057-5.064 7-9.542 7-4.477 
+                         0-8.268-2.943-9.542-7z" />`;
+    
+    eyeIcon.innerHTML = visibleIcon;
+    stickyEyeIcon.innerHTML = visibleIcon;
+  }
+}
+
+(function() {
+  const paySection = document.getElementById("paySection");
+  const payCard = document.getElementById("payCard");
+  const payBackdrop = document.getElementById("payBackdrop");
+  const closePay = document.getElementById("closePay");
+  const tabPay = document.getElementById("tabPay");
+  const bottomNav = document.querySelector(".bottom-nav");
+
+  const tabSlider = document.getElementById("tabSlider");
+  const tabBtns = document.querySelectorAll(".tabBtn");
+  
+  let activeTab = 0;
+  let startX = 0, currentX = 0, isDragging = false;
+
+  // ==== OPEN & CLOSE SHEET ====
+  function openPay() {
+    bottomNav.classList.add("hidden");
+    paySection.classList.remove("hidden");
+    requestAnimationFrame(() => payCard.classList.remove("translate-y-full"));
+  }
+  function closePaySheet() {
+    payCard.classList.add("translate-y-full");
+    setTimeout(() => {
+      paySection.classList.add("hidden");
+      bottomNav.classList.remove("hidden");
+    }, 300);
+  }
+
+  tabPay.addEventListener("click", openPay);
+  closePay.addEventListener("click", closePaySheet);
+  payBackdrop.addEventListener("click", closePaySheet);
+
+  // ==== TAB SWITCH ====
+  function setActiveTab(index) {
+    activeTab = index;
+    tabSlider.style.transform = `translateX(-${index * 100}%)`;
+    tabBtns.forEach((btn, i) => {
+      if (i === index) {
+        btn.classList.add("text-blue-600","font-semibold","border-b-2","border-blue-600");
+        btn.classList.remove("text-gray-500");
+      } else {
+        btn.classList.remove("text-blue-600","font-semibold","border-b-2","border-blue-600");
+        btn.classList.add("text-gray-500");
+      }
+    });
+  }
+  tabBtns.forEach((btn, i) => {
+    btn.addEventListener("click", () => setActiveTab(i));
+  });
+
+})();
+
+    
